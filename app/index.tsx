@@ -7,7 +7,9 @@ import {
 export default function Index() {
   const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "green" }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: "green", paddingBottom: 0 }}
+    >
       <View
         style={{
           flex: 1,
