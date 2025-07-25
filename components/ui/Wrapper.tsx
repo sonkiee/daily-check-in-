@@ -5,7 +5,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const inset = useSafeAreaInsets();
   return (
     <LinearGradient
-      colors={["ivory", "#3b5998", "#192f6a"]}
+      colors={["#4c669f", "#3b5998", "#192f6a"]}
       style={{ flex: 1, paddingTop: inset.top }}
     >
       {children}
