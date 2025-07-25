@@ -20,7 +20,7 @@ const RootLayout = () => {
           name="index"
           options={{
             title: "Home",
-            headerShown: false,
+            headerShown: true,
             // headerTransparent: true,
             headerTitle: "",
             headerRight: () => (
