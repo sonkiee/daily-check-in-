@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function RootLayout() {
   return (
@@ -7,6 +8,7 @@ export default function RootLayout() {
         name="index"
         options={{ title: "Home", headerShown: false }}
       />
+      <StatusBar style="dark" />
     </Stack>
   );
 }
