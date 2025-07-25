@@ -6,6 +6,9 @@ export default function Index() {
     <Wrapper>
       <View style={styles.container}>
         <Text style={styles.text}>Hi Wanderer</Text>
+        <Text style={styles.subtext}>
+          “Not all those who wander are lost.” – J.R.R. Tolkien
+        </Text>
       </View>
     </Wrapper>
   );
@@ -16,9 +19,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: 20,
   },
   text: {
-    fontSize: 20,
+    fontSize: 28,
     color: "#fff",
+    fontWeight: "600",
+    marginBottom: 10,
+  },
+  subtext: {
+    fontSize: 18,
+    color: "#ddd",
+    textAlign: "center",
   },
 });
