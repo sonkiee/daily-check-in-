@@ -1,4 +1,4 @@
-import { Ionicons } from "@expo/vector-icons";
+import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { TouchableOpacity } from "react-native";
@@ -12,11 +12,12 @@ export default function RootLayout() {
           name="index"
           options={{
             title: "Home",
-            headerShown: true,
+            headerShown: false,
             headerTransparent: true,
+            headerTitle: "",
             headerRight: () => (
               <TouchableOpacity onPress={() => console.log("Settings")}>
-                <Ionicons name="settings-outline" size={24} color="#ccc" />
+                <IconSymbol name="gear" size={24} color="#fff" />
               </TouchableOpacity>
             ),
           }}
