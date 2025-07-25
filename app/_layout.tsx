@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { TouchableOpacity } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-export default function RootLayout() {
+const RootLayout = () => {
   return (
     <SafeAreaProvider>
       <Stack>
@@ -27,4 +27,6 @@ export default function RootLayout() {
       <StatusBar style="dark" />
     </SafeAreaProvider>
   );
-}
+};
+
+export default RootLayout;
