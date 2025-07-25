@@ -2,9 +2,8 @@ import Progress from "@/components/Progress";
 import SuccessModal from "@/components/SuccessModal";
 import Button from "@/components/ui/Button";
 import Wrapper from "@/components/ui/Wrapper";
-import { Ionicons } from "@expo/vector-icons"; // or any icon library you use
 import React, { useCallback, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   const [points, setPoints] = useState(750);
@@ -38,13 +37,6 @@ export default function Index() {
   return (
     <Wrapper>
       <View style={styles.container}>
-        {/* Settings icon */}
-        <View style={styles.topRight}>
-          <TouchableOpacity onPress={() => console.log("Settings")}>
-            <Ionicons name="settings-outline" size={24} color="#ccc" />
-          </TouchableOpacity>
-        </View>
-
         {/* Quote */}
         <View style={styles.quoteContainer}>
           <Text style={styles.quote}>
