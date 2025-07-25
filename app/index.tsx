@@ -9,12 +9,12 @@ export default function Index() {
   return (
     <SafeAreaView
       style={{ flex: 1, backgroundColor: "green", paddingBottom: 0 }}
+      edges={["top"]}
     >
       <View
         style={{
           flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
+
           backgroundColor: "blue",
         }}
       >
