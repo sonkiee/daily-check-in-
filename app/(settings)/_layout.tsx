@@ -3,17 +3,16 @@ import React from "react";
 
 const SettingsLayout = () => {
   return (
-    <Stack>
-      <Stack.Screen
-        name="settings"
-        options={{
-          title: "Settings",
-          headerShown: false,
-          headerTransparent: true,
-          headerTitle: "",
-          animation: "fade",
-        }}
-      />
+    <Stack
+      screenOptions={{
+        title: "Settings",
+        headerShown: false,
+        headerTransparent: true,
+        headerTitle: "",
+        animation: "fade",
+      }}
+    >
+      <Stack.Screen name="settings" />
     </Stack>
   );
 };
