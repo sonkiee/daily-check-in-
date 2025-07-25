@@ -14,7 +14,11 @@ type ButtonProps = PressableProps & {
 
 const Button: React.FC<ButtonProps> = ({ onPress, style, title, ...rest }) => {
   return (
-    <Pressable onPress={onPress} style={[styles.button, style]} {...rest}>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [styles.button, style, pressed && styles.pressed]}
+      {...rest}
+    >
       <Text style={styles.buttonText}>{title}</Text>
     </Pressable>
   );
@@ -38,6 +42,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "600",
+  },
+  pressed: {
+    opacity: 0.6,
   },
 });
 

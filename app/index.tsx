@@ -11,7 +11,7 @@ export default function Index() {
           “Not all those who wander are lost.” – J.R.R. Tolkien
         </Text>
 
-        <Button title="Explore" onPress={() => alert("Button Pressed!")} />
+        <Button title="Explore" onPress={() => console.log("button pressed")} />
       </View>
     </Wrapper>
   );
