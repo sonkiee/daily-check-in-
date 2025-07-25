@@ -12,8 +12,6 @@ export default function RootLayout() {
             title: "Home",
             headerShown: true,
             headerTransparent: true,
-            headerLargeTitle: true,
-            headerTitle: "Welcome",
           }}
         />
       </Stack>

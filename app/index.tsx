@@ -1,15 +1,15 @@
 import Wrapper from "@/components/ui/Wrapper";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   return (
     <Wrapper>
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.text}>Hi Wanderer</Text>
         <Text style={styles.subtext}>
           “Not all those who wander are lost.” – J.R.R. Tolkien
         </Text>
-      </ScrollView>
+      </View>
     </Wrapper>
   );
 }
@@ -24,12 +24,13 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 28,
     color: "#fff",
-    fontWeight: "600",
+    fontWeight: "medium",
     marginBottom: 10,
   },
   subtext: {
     fontSize: 18,
     color: "#ddd",
     textAlign: "center",
+    fontStyle: "italic",
   },
 });
