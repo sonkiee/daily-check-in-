@@ -7,7 +7,15 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 const RootLayout = () => {
   return (
     <SafeAreaProvider>
-      <Stack>
+      <Stack
+        screenOptions={{
+          animation: "fade",
+          animationMatchesGesture: true,
+          headerBackButtonDisplayMode: "minimal",
+          headerTintColor: "#111",
+          headerShadowVisible: false,
+        }}
+      >
         <Stack.Screen
           name="index"
           options={{
