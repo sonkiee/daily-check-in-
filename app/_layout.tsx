@@ -19,10 +19,10 @@ const RootLayout = () => {
         <Stack.Screen
           name="index"
           options={{
-            title: "Homse",
+            title: "Home",
             headerShown: true,
             headerTransparent: true,
-            headerTitle: "Home",
+            headerTitle: "",
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => router.push("/(settings)/settings")}
