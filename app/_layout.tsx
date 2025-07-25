@@ -8,7 +8,13 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen
           name="index"
-          options={{ title: "Home", headerShown: false }}
+          options={{
+            title: "Home",
+            headerShown: true,
+            headerTransparent: true,
+            headerLargeTitle: true,
+            headerTitle: "Welcome",
+          }}
         />
       </Stack>
       <StatusBar style="dark" />
