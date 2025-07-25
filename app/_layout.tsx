@@ -19,13 +19,14 @@ const RootLayout = () => {
         <Stack.Screen
           name="index"
           options={{
-            title: "Home",
+            title: "Homse",
             headerShown: true,
-            // headerTransparent: true,
+            headerTransparent: true,
             headerTitle: "Home",
+
             headerRight: () => (
               <TouchableOpacity onPress={() => console.log("Settings")}>
-                <IconSymbol name="gear" size={24} color="#fff" />
+                <IconSymbol name="gearshape" color={"#333"} size={24} />
               </TouchableOpacity>
             ),
           }}
