@@ -1,3 +1,4 @@
+import Button from "@/components/ui/Button";
 import Wrapper from "@/components/ui/Wrapper";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -9,6 +10,8 @@ export default function Index() {
         <Text style={styles.subtext}>
           “Not all those who wander are lost.” – J.R.R. Tolkien
         </Text>
+
+        <Button title="Explore" onPress={() => alert("Button Pressed!")} />
       </View>
     </Wrapper>
   );
