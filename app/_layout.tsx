@@ -10,7 +10,7 @@ const RootLayout = () => {
       <Stack
         screenOptions={{
           animation: "fade",
-          // animationMatchesGesture: true,
+          animationMatchesGesture: true,
           headerBackButtonDisplayMode: "minimal",
           headerTintColor: "#111",
           headerShadowVisible: false,
