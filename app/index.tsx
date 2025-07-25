@@ -10,9 +10,9 @@ export default function Index() {
           <View
             style={{
               borderRadius: 9999,
-              width: 200,
-              height: 200,
-              borderWidth: 2,
+              width: 250,
+              height: 250,
+              borderWidth: 15,
               borderColor: "#fff",
               justifyContent: "center",
               alignItems: "center",
