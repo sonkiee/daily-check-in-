@@ -1,25 +1,14 @@
+import Wrapper from "@/components/ui/Wrapper";
 import { Text, View } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Index() {
   const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: "green", paddingBottom: 0 }}
-      edges={["top"]}
-    >
-      <View
-        style={{
-          flex: 1,
-
-          backgroundColor: "blue",
-        }}
-      >
+    <Wrapper>
+      <View style={{ backgroundColor: "tranparent" }}>
         <Text>Welcome to the Expo Router!</Text>
       </View>
-    </SafeAreaView>
+    </Wrapper>
   );
 }

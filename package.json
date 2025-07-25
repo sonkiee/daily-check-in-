@@ -39,7 +39,8 @@
     "react-native-webview": "13.13.5",
     "react-native-pager-view": "6.7.1",
     "expo-notifications": "~0.31.4",
-    "expo-updates": "~0.28.17"
+    "expo-updates": "~0.28.17",
+    "expo-linear-gradient": "~14.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
