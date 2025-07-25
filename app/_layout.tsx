@@ -22,7 +22,7 @@ const RootLayout = () => {
             title: "Home",
             headerShown: true,
             // headerTransparent: true,
-            headerTitle: "",
+            headerTitle: "Home",
             headerRight: () => (
               <TouchableOpacity onPress={() => console.log("Settings")}>
                 <IconSymbol name="gear" size={24} color="#fff" />
