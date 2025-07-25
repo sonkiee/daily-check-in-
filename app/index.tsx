@@ -8,8 +8,7 @@ const CIRCLE_SIZE = 250;
 const STROKE_WIDTH = 15;
 const RADIUS = (CIRCLE_SIZE - STROKE_WIDTH) / 2;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
-
-const progress = 0.8; // 80%
+const progress = 0.8;
 
 export default function Index() {
   const strokeDashoffset = CIRCUMFERENCE * (1 - progress);
@@ -28,7 +27,7 @@ export default function Index() {
               r={RADIUS}
               strokeWidth={STROKE_WIDTH}
             />
-            <Text> jjj</Text>
+
             {/* Progress ring */}
             <Circle
               stroke="#4CAF50"
@@ -44,6 +43,11 @@ export default function Index() {
               origin={`${CIRCLE_SIZE / 2}, ${CIRCLE_SIZE / 2}`}
             />
           </Svg>
+
+          {/* Inner content */}
+          <View style={styles.centerContent}>
+            <Text style={styles.innerText}>{Math.round(progress * 100)}%</Text>
+          </View>
         </View>
 
         <Text style={styles.text}>Hi Wanderer</Text>
@@ -64,19 +68,35 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
   },
+
   progressWrapper: {
-    width: CIRCLE_SIZE,
+    width: CIRCLE_SIZE + STROKE_WIDTH,
     height: CIRCLE_SIZE,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 40,
+    position: "relative",
   },
+
+  centerContent: {
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  innerText: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+
   text: {
     fontSize: 28,
     color: "#fff",
     fontWeight: "600",
     marginBottom: 10,
   },
+
   subtext: {
     fontSize: 18,
     color: "#ddd",
