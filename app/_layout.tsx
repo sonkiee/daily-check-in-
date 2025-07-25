@@ -3,12 +3,14 @@ import { StatusBar } from "expo-status-bar";
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen
-        name="index"
-        options={{ title: "Home", headerShown: false }}
-      />
+    <>
+      <Stack>
+        <Stack.Screen
+          name="index"
+          options={{ title: "Home", headerShown: false }}
+        />
+      </Stack>
       <StatusBar style="dark" />
-    </Stack>
+    </>
   );
 }
