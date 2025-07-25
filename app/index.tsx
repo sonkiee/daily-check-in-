@@ -6,6 +6,17 @@ export default function Index() {
   return (
     <Wrapper>
       <View style={styles.container}>
+        <View>
+          <View
+            style={{
+              borderRadius: 9999,
+              width: 200,
+              height: 200,
+              borderWidth: 2,
+              borderColor: "#fff",
+            }}
+          />
+        </View>
         <Text style={styles.text}>Hi Wanderer</Text>
         <Text style={styles.subtext}>
           “Not all those who wander are lost.” – J.R.R. Tolkien
