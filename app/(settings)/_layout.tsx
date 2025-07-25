@@ -10,6 +10,10 @@ const SettingsLayout = () => {
         headerTransparent: true,
         headerTitle: "Settings",
         animation: "fade",
+        headerLargeTitle: true,
+        headerShadowVisible: false,
+        headerBackButtonDisplayMode: "minimal",
+        headerTintColor: "#111",
       }}
     >
       <Stack.Screen name="settings" />

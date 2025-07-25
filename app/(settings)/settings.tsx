@@ -103,9 +103,11 @@ const SettingsScreen = () => {
 
   return (
     <Wrapper>
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>Settings</Text>
-
+      <ScrollView
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic"
+      >
         <SettingSection title="Notifications">
           <SettingItem
             title="Push Notifications"
