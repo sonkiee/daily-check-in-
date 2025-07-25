@@ -6,9 +6,9 @@ const SettingsLayout = () => {
     <Stack
       screenOptions={{
         title: "Settings",
-        headerShown: false,
+        headerShown: true,
         headerTransparent: true,
-        headerTitle: "",
+        headerTitle: "Settings",
         animation: "fade",
       }}
     >

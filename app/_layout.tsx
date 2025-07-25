@@ -32,7 +32,12 @@ const RootLayout = () => {
             ),
           }}
         />
-        <Stack.Screen name="(settings)" />
+        <Stack.Screen
+          name="(settings)"
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack>
       <StatusBar style="dark" />
     </SafeAreaProvider>
