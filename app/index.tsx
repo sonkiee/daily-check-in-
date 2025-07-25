@@ -14,6 +14,7 @@ export default function Index() {
               height: 250,
               borderWidth: 15,
               borderColor: "#fff",
+              position: "relative",
               // justifyContent: "center",
               // alignItems: "center",
             }}
@@ -24,6 +25,8 @@ export default function Index() {
                 height: 250,
                 borderRadius: 9999,
                 backgroundColor: "#4CAF50",
+                borderWidth: 15,
+                position: "absolute",
               }}
             />
           </View>
