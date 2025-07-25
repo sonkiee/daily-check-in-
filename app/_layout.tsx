@@ -10,7 +10,7 @@ export default function RootLayout() {
           name="index"
           options={{
             title: "Home",
-            headerShown: true,
+            headerShown: false,
             headerTransparent: true,
           }}
         />
