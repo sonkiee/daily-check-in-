@@ -12,8 +12,8 @@ export default function RootLayout() {
           name="index"
           options={{
             title: "Home",
-            headerShown: false,
-            headerTransparent: true,
+            headerShown: true,
+            // headerTransparent: true,
             headerTitle: "",
             headerRight: () => (
               <TouchableOpacity onPress={() => console.log("Settings")}>
@@ -22,6 +22,7 @@ export default function RootLayout() {
             ),
           }}
         />
+        <Stack.Screen name="(settings)" />
       </Stack>
       <StatusBar style="dark" />
     </SafeAreaProvider>
