@@ -14,8 +14,23 @@ export default function Index() {
               height: 200,
               borderWidth: 2,
               borderColor: "#fff",
+              justifyContent: "center",
+              alignItems: "center",
             }}
-          />
+          >
+            <Text
+              style={{
+                fontSize: 24,
+                color: "#fff",
+                textAlign: "center",
+                lineHeight: 200,
+                fontWeight: "bold",
+              }}
+            >
+              {" "}
+              10 points
+            </Text>
+          </View>
         </View>
         <Text style={styles.text}>Hi Wanderer</Text>
         <Text style={styles.subtext}>
