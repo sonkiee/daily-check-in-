@@ -33,7 +33,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ],[
+      ],
+      [
         "expo-notifications",
         {
           "icon": "./assets/images/notification-icon.png",
@@ -46,7 +47,8 @@
             }
           ]
         }
-      ]
+      ],
+      "react-native-google-mobile-ads"
     ],
     "experiments": {
       "typedRoutes": true
