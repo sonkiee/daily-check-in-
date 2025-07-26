@@ -1,3 +1,4 @@
+import RewardsScreen from "@/components/screens/Claim";
 import HomeScreen from "@/components/screens/Home";
 import Wrapper from "@/components/ui/Wrapper";
 import React from "react";
@@ -9,7 +10,7 @@ const Index = () => {
     <Wrapper>
       <PagerView style={styles.container} initialPage={0} overdrag>
         <HomeScreen key={1} />
-        {/* <SettingsScreen key={2} /> */}
+        <RewardsScreen key={2} />
       </PagerView>
     </Wrapper>
   );
