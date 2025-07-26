@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Switch,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -25,7 +24,7 @@ const SettingItem = ({
   rightComponent,
   showArrow = false,
 }: SettingItemProps) => (
-  <TouchableOpacity style={styles.settingItem} onPress={onPress}>
+  <View style={styles.settingItem} onTouchEnd={onPress}>
     <View style={styles.settingContent}>
       <Text style={styles.settingTitle}>{title}</Text>
       {subtitle && <Text style={styles.settingSubtitle}>{subtitle}</Text>}
@@ -34,7 +33,7 @@ const SettingItem = ({
       {rightComponent}
       {showArrow && <Text style={styles.arrow}>›</Text>}
     </View>
-  </TouchableOpacity>
+  </View>
 );
 
 interface SettingSectionProps {
@@ -53,53 +52,17 @@ const SettingsScreen = () => {
   const [notifications, setNotifications] = useState(true);
   const [dailyReminders, setDailyReminders] = useState(true);
   const [streakReminders, setStreakReminders] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
-  const [hapticFeedback, setHapticFeedback] = useState(true);
-  const [darkMode, setDarkMode] = useState(true);
 
-  const handleNotificationSettings = () => {
+  const handleNotificationSettings = () =>
     Alert.alert(
       "Notification Settings",
       "Configure your notification preferences"
     );
-  };
 
-  const handleAccount = () => {
-    Alert.alert("Account", "Manage your account settings");
-  };
+  const handleSupport = () => Alert.alert("Support", "Get help and support");
 
-  const handlePrivacy = () => {
-    Alert.alert("Privacy", "Review privacy settings");
-  };
-
-  const handleSupport = () => {
-    Alert.alert("Support", "Get help and support");
-  };
-
-  const handleAbout = () => {
+  const handleAbout = () =>
     Alert.alert("About", "App version 1.0.0\nBuilt with React Native");
-  };
-
-  const handleResetProgress = () => {
-    Alert.alert(
-      "Reset Progress",
-      "Are you sure you want to reset all your progress? This action cannot be undone.",
-      [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Reset",
-          style: "destructive",
-          onPress: () => {
-            Alert.alert("Progress Reset", "Your progress has been reset.");
-          },
-        },
-      ]
-    );
-  };
-
-  const handleExportData = () => {
-    Alert.alert("Export Data", "Your data export will be available shortly");
-  };
 
   return (
     <Wrapper>
@@ -186,14 +149,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 32,
-    color: "#fff",
-    fontWeight: "700",
-    marginTop: 60,
-    marginBottom: 30,
-    textAlign: "center",
-  },
   section: {
     marginBottom: 30,
   },
@@ -241,11 +196,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#666",
     fontWeight: "300",
-  },
-  dangerText: {
-    fontSize: 14,
-    color: "#FF6B6B",
-    fontWeight: "500",
   },
   footer: {
     alignItems: "center",
