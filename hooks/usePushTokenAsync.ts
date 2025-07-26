@@ -9,7 +9,7 @@ const usePushTokenAync = () => {
         console.log("Push Token:", token);
       }
     })();
-  });
+  }, []);
 };
 
 export default usePushTokenAync;
