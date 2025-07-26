@@ -1,7 +1,7 @@
 import Constants from "expo-constants";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
-import { Platform } from "react-native";
+import { Alert, Platform } from "react-native";
 
 export async function registerForPushNotificationsAsync() {
   let token;
@@ -23,8 +23,9 @@ export async function registerForPushNotificationsAsync() {
       const { status } = await Notifications.requestPermissionsAsync();
       finalStatus = status;
     }
+
     if (finalStatus !== "granted") {
-      alert("Failed to get push token for push notification!");
+      Alert.alert("Failed to get push token for push notification!");
       return;
     }
     // Learn more about projectId:
@@ -46,14 +47,8 @@ export async function registerForPushNotificationsAsync() {
       token = `${e}`;
     }
   } else {
-    alert("Must use physical device for Push Notifications");
+    Alert.alert("Must use physical device for Push Notifications");
   }
 
   return token;
-}
-
-export async function getExpoPushToken() {
-  // This function should return the Expo push token for the device
-  // For now, we return a dummy token
-  return "ExponentPushToken[dummy-token]";
 }
