@@ -8,6 +8,7 @@ import PagerView from "react-native-pager-view";
 
 const Index = () => {
   const token = usePushNotifications();
+  console.log("Expo Push Token:", token);
   return (
     <Wrapper>
       <PagerView style={styles.container} initialPage={0} overdrag>
