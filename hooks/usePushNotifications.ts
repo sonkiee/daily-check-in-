@@ -2,7 +2,7 @@ import { registerForPushNotificationsAsync } from "@/libs/notification";
 import * as Notifications from "expo-notifications";
 import { useEffect, useRef, useState } from "react";
 
-export const useNotificationListeners = () => {
+const usePushNotifications = () => {
   const [expoPushToken, setExpoPushToken] = useState("");
   const notificationListener = useRef<any>(null);
   const responseListener = useRef<any>(null);
@@ -30,3 +30,5 @@ export const useNotificationListeners = () => {
   }, []);
   return expoPushToken;
 };
+
+export default usePushNotifications;
