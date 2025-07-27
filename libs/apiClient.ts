@@ -10,15 +10,20 @@ export const apiClient = axios.create({
   },
 });
 
-apiClient.interceptors.request.use(async (config) => {
-  const token = await Storage.get("accessToken");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+apiClient.interceptors.request.use(
+  async (config) => {
+    const token = await Storage.get("accessToken");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    if (config.data instanceof FormData) {
+      config.headers["Content-Type"] = "multipart/form-data";
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
-  if (config.data instanceof FormData) {
-    config.headers["Content-Type"] = "multipart/form-data";
-  }
-
-  return config;
+apiClient.interceptors.response.use((response) => {
+  return response.data;
 });
