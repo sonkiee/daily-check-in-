@@ -8,6 +8,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 const queryClient = new QueryClient();
 
 const RootLayout = () => {
+  console.log("First to log in ");
+
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
