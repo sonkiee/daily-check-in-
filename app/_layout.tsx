@@ -3,13 +3,19 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { randomUUID } from "expo-crypto";
 import { router, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { Alert, TouchableOpacity } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const queryClient = new QueryClient();
 
 const RootLayout = () => {
+  const [newDevice, setNewDevice] = useState(true);
   const uuid = randomUUID();
+
+  if (newDevice) {
+    Alert.alert("Welcome", "most welcome to our app new tome usrr");
+  }
 
   console.log("UUID", uuid);
   return (
