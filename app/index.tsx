@@ -10,12 +10,6 @@ const Index = () => {
   const token = usePushNotifications();
   console.log("Expo Push Token:", token);
 
-  const [first, setFirst] = React.useState(true);
-
-  // if (first) {
-  //   return <Redirect href="/(onboarding)" />;
-  // }
-
   return (
     <Wrapper>
       <PagerView style={styles.container} initialPage={0} overdrag>
