@@ -2,6 +2,7 @@ import ClaimScreen from "@/components/screens/Claim";
 import HomeScreen from "@/components/screens/Home";
 import Wrapper from "@/components/ui/Wrapper";
 import usePushNotifications from "@/hooks/usePushNotifications";
+import { Redirect } from "expo-router";
 import React from "react";
 import { StyleSheet } from "react-native";
 import PagerView from "react-native-pager-view";
@@ -9,6 +10,13 @@ import PagerView from "react-native-pager-view";
 const Index = () => {
   const token = usePushNotifications();
   console.log("Expo Push Token:", token);
+
+  const [first, setFirst] = React.useState(true);
+
+  if (first) {
+    return <Redirect href="/(onboarding)" />;
+  }
+
   return (
     <Wrapper>
       <PagerView style={styles.container} initialPage={0} overdrag>
