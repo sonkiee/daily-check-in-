@@ -9,17 +9,14 @@ export default function AppLayout() {
       initialRouteName="index"
       screenOptions={{
         animation: "fade",
-        headerBackButtonDisplayMode: "minimal",
-        headerTintColor: "#111",
         headerShadowVisible: false,
+        headerTransparent: true,
       }}
     >
       <Stack.Screen
         name="index"
         options={{
-          title: "Home",
           headerShown: true,
-          headerTransparent: true,
           headerTitle: "",
           headerRight: () => (
             <TouchableOpacity

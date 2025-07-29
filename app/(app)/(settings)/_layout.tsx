@@ -6,11 +6,9 @@ export default function SettingsLayout() {
     <Stack
       screenOptions={{
         title: "Settings",
-        animation: "fade",
         headerLargeTitle: true,
-        headerBackButtonDisplayMode: "minimal",
         headerShadowVisible: false,
-        headerTintColor: "#111",
+        headerTransparent: true,
       }}
     >
       <Stack.Screen name="settings" />
