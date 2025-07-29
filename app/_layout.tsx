@@ -1,22 +1,13 @@
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Redirect, router, Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const queryClient = new QueryClient();
 
 const RootLayout = () => {
-  const [newDevice, setNewDevice] = useState(true);
-
-  // if (newDevice) {
-  //   Alert.alert("Welcome", "You're most welcome to our app new tome usrr");
-  // }
-
-  if (newDevice) return <Redirect href={"/(auth)"} />;
-
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
