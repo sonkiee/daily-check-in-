@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Slot } from "expo-router";
+import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -9,7 +9,20 @@ const RootLayout = () => {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <Slot />
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="(app)" />
+          <Stack.Screen
+            name="(auth)"
+            options={{
+              presentation: "modal",
+            }}
+          />
+          <Stack.Screen name="(onboarding)" />
+        </Stack>
       </QueryClientProvider>
       <StatusBar style="dark" />
     </SafeAreaProvider>
