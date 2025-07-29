@@ -5,3 +5,5 @@ type User = {
   deviceId: string;
   streak: string;
 };
+
+type UserState = {};
