@@ -1,10 +1,19 @@
+// app/(app)/_layout.tsx
 import { IconSymbol } from "@/components/ui/IconSymbol.ios";
-import { router, Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
-const AppLayout = () => {
+export default function AppLayout() {
   return (
-    <Stack initialRouteName="index">
+    <Stack
+      initialRouteName="index"
+      screenOptions={{
+        animation: "fade",
+        headerBackButtonDisplayMode: "minimal",
+        headerTintColor: "#111",
+        headerShadowVisible: false,
+      }}
+    >
       <Stack.Screen
         name="index"
         options={{
@@ -16,19 +25,12 @@ const AppLayout = () => {
             <TouchableOpacity
               onPress={() => router.push("/(app)/(settings)/settings")}
             >
-              <IconSymbol name="gearshape" color={"#333"} size={24} />
+              <IconSymbol name="gearshape" color="#333" size={24} />
             </TouchableOpacity>
           ),
         }}
       />
-      <Stack.Screen
-        name="(settings)"
-        options={{
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen name="(settings)" options={{ headerShown: false }} />
     </Stack>
   );
-};
-
-export default AppLayout;
+}
