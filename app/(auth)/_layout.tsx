@@ -7,7 +7,7 @@ const AuthLayout = () => {
         presentation: "modal",
       }}
     >
-      <Stack.Screen name="index" options={{}} />
+      <Stack.Screen name="sign-up" options={{}} />
     </Stack>
   );
 };
