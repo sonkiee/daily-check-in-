@@ -4,7 +4,7 @@ const AuthLayout = () => {
   return (
     <Stack
       screenOptions={{
-        presentation: "modal",
+        presentation: "formSheet",
       }}
     >
       <Stack.Screen
