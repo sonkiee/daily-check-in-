@@ -9,7 +9,11 @@ const RootLayout = () => {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <Stack>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
           <Stack.Screen name="(app)" />
           <Stack.Screen name="(auth)" />
           <Stack.Screen name="(onboarding)" />
