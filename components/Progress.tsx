@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { SymbolView } from "expo-symbols";
 import { useEffect, useState } from "react";
 import {
@@ -88,7 +89,10 @@ const Progress = ({
       </Svg>
 
       <View style={styles.innerContent}>
-        <TouchableOpacity activeOpacity={0.7}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => router.push("/(auth)")}
+        >
           <Text style={styles.innerText}>{points}</Text>
           <Text style={styles.pointsLabel}>points</Text>
           <View style={styles.streakContainer}>
