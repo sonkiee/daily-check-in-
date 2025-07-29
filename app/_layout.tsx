@@ -12,13 +12,15 @@ const RootLayout = () => {
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
         <Stack
-          screenOptions={{
-            animation: "fade",
-            animationMatchesGesture: true,
-            headerBackButtonDisplayMode: "minimal",
-            headerTintColor: "#111",
-            headerShadowVisible: false,
-          }}
+          screenOptions={
+            {
+              // animation: "fade",
+              // animationMatchesGesture: true,
+              // headerBackButtonDisplayMode: "minimal",
+              // headerTintColor: "#111",
+              // headerShadowVisible: false,
+            }
+          }
         >
           <Stack.Screen
             name="index"
@@ -46,6 +48,7 @@ const RootLayout = () => {
             name="(auth)"
             options={{
               headerShown: false,
+              presentation: "modal",
             }}
           />
         </Stack>
