@@ -1,15 +1,27 @@
+import { create } from "zustand";
+
 type User = {
   id: string;
   token: string;
-  points: string;
+  points: number;
   deviceId: string;
-  streak: string;
+  streak: number;
 };
 
-type UserState = {
+type UserStore = {
   user: User | null;
-  token: string | null;
   isLoading: boolean;
   refreshing: boolean;
-  setUser: () => Promise<void>;
+  setUser: (user: User) => void;
+  clearUser: () => void;
+  setRefreshing: (state: boolean) => void;
 };
+
+export const useUserStore = create<UserStore>((set) => ({
+  user: null,
+  isLoading: false,
+  refreshing: false,
+  setUser: (user) => set({ user }),
+  clearUser: () => set({ user: null }),
+  setRefreshing: (state) => set({ refreshing: state }),
+}));
