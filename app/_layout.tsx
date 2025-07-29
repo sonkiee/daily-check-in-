@@ -48,7 +48,7 @@ const RootLayout = () => {
             name="(auth)"
             options={{
               headerShown: false,
-              presentation: "modal",
+              presentation: "formSheet",
             }}
           />
         </Stack>
