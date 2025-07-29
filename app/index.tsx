@@ -5,11 +5,7 @@ const Index = () => {
   // const token = usePushNotifications();
   // console.log("Expo Push Token:", token);
 
-  // if (newDevice) {
-  //   Alert.alert("Welcome", "You're most welcome to our app new tome usrr");
-  // }
-
-  return <Redirect href="/(app)" />;
+  return <Redirect href={"/(app)"} />;
 };
 
 export default Index;
