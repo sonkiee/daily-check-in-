@@ -6,7 +6,7 @@ const AuthLayout = () => {
       <Stack.Screen
         name="index"
         options={{
-          presentation: "formSheet",
+          presentation: "modal",
         }}
       />
     </Stack>
