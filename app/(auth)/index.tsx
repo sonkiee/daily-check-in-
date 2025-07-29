@@ -85,8 +85,9 @@ const SignupModal: React.FC<SignupModalProps> = ({
     <Modal
       visible={visible}
       animationType="slide"
-      transparent={true}
+      //   transparent={true}
       onRequestClose={handleClose}
+      presentationStyle="pageSheet"
     >
       <View style={styles.overlay}>
         <KeyboardAvoidingView
