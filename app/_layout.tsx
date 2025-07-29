@@ -14,7 +14,7 @@ const RootLayout = () => {
   const uuid = randomUUID();
 
   if (newDevice) {
-    Alert.alert("Welcome", "most welcome to our app new tome usrr");
+    Alert.alert("Welcome", "You're most welcome to our app new tome usrr");
   }
 
   console.log("UUID", uuid);
