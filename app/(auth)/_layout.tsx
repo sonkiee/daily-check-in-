@@ -4,7 +4,7 @@ const AuthLayout = () => {
   return (
     <Stack
       screenOptions={{
-        presentation: "modal",
+        headerShown: false,
       }}
     >
       <Stack.Screen name="sign-up" options={{}} />
