@@ -1,3 +1,4 @@
+import Wrapper from "@/components/ui/Wrapper";
 import React from "react";
 import {
   KeyboardAvoidingView,
@@ -11,27 +12,29 @@ import {
 
 const SignUpScreen = () => {
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.select({ ios: "padding", android: undefined })}
-    >
-      <View style={styles.content}>
-        <Text style={styles.title}>Choose a username</Text>
-        <Text style={styles.subtitle}>
-          This will be your unique ID – no spaces or special characters.
-        </Text>
+    <Wrapper>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.select({ ios: "padding", android: undefined })}
+      >
+        <View style={styles.content}>
+          <Text style={styles.title}>Choose a username</Text>
+          <Text style={styles.subtitle}>
+            This will be your unique ID – no spaces or special characters.
+          </Text>
 
-        <TextInput
-          style={styles.input}
-          placeholder="e.g. joshua_dev"
-          placeholderTextColor="#aaa"
-        />
+          <TextInput
+            style={styles.input}
+            placeholder="e.g. joshua_dev"
+            placeholderTextColor="#aaa"
+          />
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Continue</Text>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
+    </Wrapper>
   );
 };
 
@@ -40,7 +43,7 @@ export default SignUpScreen;
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    backgroundColor: "#fff",
+    // backgroundColor: "#fff",
     justifyContent: "center",
     padding: 24,
   },
