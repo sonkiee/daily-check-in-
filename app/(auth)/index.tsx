@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   Alert,
   KeyboardAvoidingView,
-  Modal,
   Platform,
   ScrollView,
   StyleSheet,
@@ -82,142 +81,131 @@ const SignupModal: React.FC<SignupModalProps> = ({
   };
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      //   transparent={true}
-      onRequestClose={handleClose}
-      presentationStyle="pageSheet"
-    >
-      <View style={styles.overlay}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.keyboardAvoid}
-        >
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <View style={styles.modalContainer}>
-              {/* Header */}
-              <View style={styles.header}>
-                <Text style={styles.title}>
-                  {isLogin ? "Welcome Back!" : "Save Your Progress"}
-                </Text>
-                <Text style={styles.subtitle}>
-                  {isLogin
-                    ? "Sign in to continue your streak"
-                    : `You're about to earn ${earnedPoints} points! Create an account to save your progress.`}
-                </Text>
-              </View>
-
-              {/* Form */}
-              <View style={styles.form}>
-                <View style={styles.inputContainer}>
-                  <Text style={styles.label}>Username</Text>
-                  <TextInput
-                    style={styles.input}
-                    value={username}
-                    onChangeText={setUsername}
-                    placeholder="Enter your username"
-                    placeholderTextColor="#666"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                  />
-                </View>
-
-                <View style={styles.inputContainer}>
-                  <Text style={styles.label}>Email</Text>
-                  <TextInput
-                    style={styles.input}
-                    value={email}
-                    onChangeText={setEmail}
-                    placeholder="Enter your email"
-                    placeholderTextColor="#666"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                  />
-                </View>
-
-                <View style={styles.inputContainer}>
-                  <Text style={styles.label}>Password</Text>
-                  <TextInput
-                    style={styles.input}
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="Enter your password"
-                    placeholderTextColor="#666"
-                    secureTextEntry
-                    autoCapitalize="none"
-                  />
-                </View>
-
-                <View style={styles.buttonContainer}>
-                  <Button
-                    title={
-                      loading
-                        ? "Please wait..."
-                        : isLogin
-                        ? "Sign In"
-                        : "Create Account & Check In"
-                    }
-                    onPress={handleSubmit}
-                    disabled={loading}
-                  />
-                </View>
-
-                {/* Divider */}
-                <View style={styles.divider}>
-                  <View style={styles.dividerLine} />
-                  <Text style={styles.dividerText}>or</Text>
-                  <View style={styles.dividerLine} />
-                </View>
-
-                {/* Social Login */}
-                <View style={styles.socialContainer}>
-                  <TouchableOpacity
-                    style={styles.socialButton}
-                    onPress={() => handleSocialLogin("Google")}
-                  >
-                    <Text style={styles.socialButtonText}>
-                      Continue with Google
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.socialButton}
-                    onPress={() => handleSocialLogin("Apple")}
-                  >
-                    <Text style={styles.socialButtonText}>
-                      Continue with Apple
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-
-                {/* Toggle Login/Signup */}
-                <View style={styles.toggleContainer}>
-                  <Text style={styles.toggleText}>
-                    {isLogin
-                      ? "Don't have an account?"
-                      : "Already have an account?"}
-                  </Text>
-                  <TouchableOpacity onPress={() => setIsLogin(!isLogin)}>
-                    <Text style={styles.toggleButton}>
-                      {isLogin ? "Sign Up" : "Sign In"}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-
-              {/* Close Button */}
-              <TouchableOpacity
-                style={styles.closeButton}
-                onPress={handleClose}
-              >
-                <Text style={styles.closeButtonText}>Maybe Later</Text>
-              </TouchableOpacity>
+    <View style={styles.overlay}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.keyboardAvoid}
+      >
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <View style={styles.modalContainer}>
+            {/* Header */}
+            <View style={styles.header}>
+              <Text style={styles.title}>
+                {isLogin ? "Welcome Back!" : "Save Your Progress"}
+              </Text>
+              <Text style={styles.subtitle}>
+                {isLogin
+                  ? "Sign in to continue your streak"
+                  : `You're about to earn ${earnedPoints} points! Create an account to save your progress.`}
+              </Text>
             </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </View>
-    </Modal>
+
+            {/* Form */}
+            <View style={styles.form}>
+              <View style={styles.inputContainer}>
+                <Text style={styles.label}>Username</Text>
+                <TextInput
+                  style={styles.input}
+                  value={username}
+                  onChangeText={setUsername}
+                  placeholder="Enter your username"
+                  placeholderTextColor="#666"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                />
+              </View>
+
+              <View style={styles.inputContainer}>
+                <Text style={styles.label}>Email</Text>
+                <TextInput
+                  style={styles.input}
+                  value={email}
+                  onChangeText={setEmail}
+                  placeholder="Enter your email"
+                  placeholderTextColor="#666"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                />
+              </View>
+
+              <View style={styles.inputContainer}>
+                <Text style={styles.label}>Password</Text>
+                <TextInput
+                  style={styles.input}
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder="Enter your password"
+                  placeholderTextColor="#666"
+                  secureTextEntry
+                  autoCapitalize="none"
+                />
+              </View>
+
+              <View style={styles.buttonContainer}>
+                <Button
+                  title={
+                    loading
+                      ? "Please wait..."
+                      : isLogin
+                      ? "Sign In"
+                      : "Create Account & Check In"
+                  }
+                  onPress={handleSubmit}
+                  disabled={loading}
+                />
+              </View>
+
+              {/* Divider */}
+              <View style={styles.divider}>
+                <View style={styles.dividerLine} />
+                <Text style={styles.dividerText}>or</Text>
+                <View style={styles.dividerLine} />
+              </View>
+
+              {/* Social Login */}
+              <View style={styles.socialContainer}>
+                <TouchableOpacity
+                  style={styles.socialButton}
+                  onPress={() => handleSocialLogin("Google")}
+                >
+                  <Text style={styles.socialButtonText}>
+                    Continue with Google
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.socialButton}
+                  onPress={() => handleSocialLogin("Apple")}
+                >
+                  <Text style={styles.socialButtonText}>
+                    Continue with Apple
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* Toggle Login/Signup */}
+              <View style={styles.toggleContainer}>
+                <Text style={styles.toggleText}>
+                  {isLogin
+                    ? "Don't have an account?"
+                    : "Already have an account?"}
+                </Text>
+                <TouchableOpacity onPress={() => setIsLogin(!isLogin)}>
+                  <Text style={styles.toggleButton}>
+                    {isLogin ? "Sign Up" : "Sign In"}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* Close Button */}
+            <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
+              <Text style={styles.closeButtonText}>Maybe Later</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </View>
   );
 };
 
