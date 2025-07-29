@@ -6,4 +6,10 @@ type User = {
   streak: string;
 };
 
-type UserState = {};
+type UserState = {
+  user: User | null;
+  token: string | null;
+  isLoading: boolean;
+  refreshing: boolean;
+  setUser: () => Promise<void>;
+};
