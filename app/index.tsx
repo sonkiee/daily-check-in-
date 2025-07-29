@@ -9,7 +9,7 @@ const Index = () => {
   //   Alert.alert("Welcome", "You're most welcome to our app new tome usrr");
   // }
 
-  return <Redirect href="/(app)/(settings)/settings" />;
+  return <Redirect href="/(app)" />;
 };
 
 export default Index;
