@@ -9,6 +9,7 @@ export default function AppLayout() {
       initialRouteName="index"
       screenOptions={{
         animation: "fade",
+        animationMatchesGesture: true,
         headerShadowVisible: false,
         headerTransparent: true,
       }}
