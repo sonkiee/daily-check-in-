@@ -15,14 +15,7 @@ const RootLayout = () => {
           }}
         >
           <Stack.Screen name="(app)" />
-          <Stack.Screen
-            name="(auth)"
-            options={{
-              presentation: "formSheet", // clean, lean, iOS native feel
-              animation: "slide_from_bottom", // optional: nice on Android
-              headerShown: false, // remove clutter
-            }}
-          />
+          <Stack.Screen name="(auth)" options={{}} />
           <Stack.Screen name="(onboarding)" />
         </Stack>
       </QueryClientProvider>

@@ -1,8 +1,38 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const SignUpScreen = () => {
-  return <Text> jjjj</Text>;
+  return (
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.select({ ios: "padding", android: undefined })}
+    >
+      <View style={styles.content}>
+        <Text style={styles.title}>Choose a username</Text>
+        <Text style={styles.subtitle}>
+          This will be your unique ID – no spaces or special characters.
+        </Text>
+
+        <TextInput
+          style={styles.input}
+          placeholder="e.g. joshua_dev"
+          placeholderTextColor="#aaa"
+        />
+
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Continue</Text>
+        </TouchableOpacity>
+      </View>
+    </KeyboardAvoidingView>
+  );
 };
 
 export default SignUpScreen;
