@@ -4,15 +4,10 @@ const AuthLayout = () => {
   return (
     <Stack
       screenOptions={{
-        presentation: "formSheet",
+        presentation: "modal",
       }}
     >
-      <Stack.Screen
-        name="sign-up"
-        options={{
-          presentation: "modal",
-        }}
-      />
+      <Stack.Screen name="sign-up" options={{}} />
     </Stack>
   );
 };
