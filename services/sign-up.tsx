@@ -3,13 +3,15 @@ import { apiClient } from "@/libs/api";
 interface SignUpProps {
   username: string;
   deviceId: string;
+  pushToken: string;
 }
 
 const signUp = async ({
   username,
   deviceId,
+  pushToken,
 }: SignUpProps): Promise<{ success: boolean; data: any }> => {
-  const payload = { username, deviceId };
+  const payload = { username, deviceId, pushToken };
 
   try {
     const response = await apiClient.post("/auth/signup", payload);

@@ -24,6 +24,7 @@ const SignUpScreen = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [loading, setIsLoading] = useState(false);
+  const [tt, setTt] = useState(false);
 
   const { user, pushToken } = useUserStore();
 
@@ -65,10 +66,35 @@ const SignUpScreen = () => {
       return Alert.alert("Error", "Device ID not available");
     }
 
+    if (!pushToken) {
+      Alert.alert(
+        "Allow Notifications?",
+        "We’d like to send you important updates, reminders, and alerts.",
+        [
+          {
+            text: "Don't Allow",
+            style: "cancel",
+            onPress: () => console.log("User denied notification permission"),
+          },
+          {
+            text: "Allow",
+            onPress: async () => {},
+          },
+        ],
+        {
+          cancelable: false, // Alert must be explicitly dismissed
+          onDismiss: () => {
+            console.log("Notification permission alert dismissed");
+          },
+        }
+      );
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      const response = await signUp({ username, deviceId });
+      const response = await signUp({ username, deviceId, pushToken });
 
       if (response.success) {
         router.dismiss();
