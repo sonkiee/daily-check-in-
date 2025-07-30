@@ -18,6 +18,8 @@ import {
 const SignUpScreen = () => {
   const [username, setUsername] = useState("");
   const [deviceId, setDeviceId] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -26,7 +28,30 @@ const SignUpScreen = () => {
     })();
   }, []);
 
-  const validateUsername = (text: string) => {};
+  const validateUsername = (text: string) => {
+    const cleanText = text.replace(/[^a-zA-Z0-9_-]/g, "");
+
+    const isValidFormat = /^[a-zA-Z0-9_]{3,20}$/.test(cleanText);
+
+    if (text !== cleanText) {
+      setErrorMessage("Only letters, numbers, and underscores allowed");
+      setIsValid(false);
+    } else if (text.length > 0 && !isValidFormat) {
+      if (text.length < 3) {
+        setErrorMessage("Username must be at least 3 characters");
+      } else if (text.length > 20) {
+        setErrorMessage("Username must be 20 characters or less");
+      } else {
+        setErrorMessage("Invalid username format");
+      }
+      setIsValid(false);
+    } else {
+      setErrorMessage("");
+      setIsValid(true);
+    }
+
+    setUsername(cleanText);
+  };
 
   const handleContinue = async () => {
     if (username.trim() === "") {
