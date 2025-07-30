@@ -5,6 +5,5 @@ export const cleanUsername = (text: string): string => {
 };
 
 export const isValidUsername = (text: string): boolean => {
-  const cleaned = cleanUsername(text);
-  return /^[a-zA-Z0-9_-]{3,20}$/.test(cleaned);
+  return /^[a-zA-Z0-9_-]{3,20}$/.test(text);
 };

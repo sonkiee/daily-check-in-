@@ -1,10 +1,12 @@
 import Wrapper from "@/components/ui/Wrapper";
 import signUp from "@/services/sign-up";
 import { genDeviceId } from "@/utils/device-id";
+import { cleanUsername, isValidUsername } from "@/utils/username";
 import * as Clipboard from "expo-clipboard";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   Alert,
   KeyboardAvoidingView,
   Platform,
@@ -30,28 +32,22 @@ const SignUpScreen = () => {
   }, []);
 
   const validateUsername = (text: string) => {
-    const cleanText = text.replace(/[^a-zA-Z0-9_-]/g, "");
+    const cleaned = cleanUsername(text);
+    setUsername(cleaned);
 
-    const isValidFormat = /^[a-zA-Z0-9_]{3,20}$/.test(cleanText);
-
-    if (text !== cleanText) {
-      setErrorMessage("Only letters, numbers, and underscores allowed");
-      setIsValid(false);
-    } else if (text.length > 0 && !isValidFormat) {
-      if (text.length < 3) {
+    if (!isValidUsername(cleaned)) {
+      if (cleaned.length < 3) {
         setErrorMessage("Username must be at least 3 characters");
-      } else if (text.length > 20) {
+      } else if (cleaned.length > 20) {
         setErrorMessage("Username must be 20 characters or less");
       } else {
-        setErrorMessage("Invalid username format");
+        setErrorMessage("Only letters, numbers, _ or - allowed");
       }
       setIsValid(false);
     } else {
       setErrorMessage("");
       setIsValid(true);
     }
-
-    setUsername(cleanText);
   };
 
   const handleContinue = async () => {
@@ -73,6 +69,7 @@ const SignUpScreen = () => {
       }
     } catch (error: any) {
       console.error("Sign-up error", error);
+      Alert.alert("Sign-up failed", error?.message || "Something went wrong.");
     } finally {
       setIsLoading(false);
     }
@@ -83,7 +80,6 @@ const SignUpScreen = () => {
   return (
     <Wrapper>
       <KeyboardAvoidingView
-        // behavior={Platform.select({ ios: "padding", android: undefined })}
         behavior={Platform.select({ ios: "padding", android: "height" })}
         keyboardVerticalOffset={Platform.select({ ios: 0, android: 20 })}
         style={styles.container}
@@ -91,7 +87,8 @@ const SignUpScreen = () => {
         <View style={styles.content}>
           <Text style={styles.title}>Choose a username</Text>
           <Text style={styles.subtitle}>
-            This will be your unique ID – no spaces or special characters.
+            This will be your unique ID – use letters, numbers, hyphen or
+            underscore.
           </Text>
 
           <View>
@@ -100,7 +97,7 @@ const SignUpScreen = () => {
                 styles.input,
                 !isValid && username.length > 0 && styles.inputError,
               ]}
-              placeholder="e.g. joshua_dev"
+              placeholder="e.g. joshua-dev"
               placeholderTextColor="#888"
               value={username}
               onChangeText={validateUsername}
@@ -126,11 +123,18 @@ const SignUpScreen = () => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.button, !canContinue && styles.buttonDisabled]}
+            style={[
+              styles.button,
+              (!canContinue || loading) && styles.buttonDisabled,
+            ]}
             onPress={handleContinue}
-            disabled={!canContinue}
+            disabled={!canContinue || loading}
           >
-            <Text style={styles.buttonText}>Continue</Text>
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>Continue</Text>
+            )}
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -161,12 +165,20 @@ const styles = StyleSheet.create({
   input: {
     height: 48,
     borderColor: "#1a1a1a",
-    // borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 14,
     fontSize: 16,
     backgroundColor: "#1a1a1a",
     color: "#fff",
+  },
+  inputError: {
+    borderColor: "#ff4444",
+  },
+  errorText: {
+    color: "#ff4444",
+    fontSize: 14,
+    marginTop: 2,
+    marginLeft: 4,
   },
   deviceId: {
     fontSize: 14,
@@ -187,14 +199,5 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "600",
     fontSize: 16,
-  },
-  errorText: {
-    color: "#ff4444",
-    fontSize: 14,
-    marginTop: 2,
-    marginLeft: 4,
-  },
-  inputError: {
-    borderColor: "#ff4444",
   },
 });
