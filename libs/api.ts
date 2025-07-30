@@ -33,8 +33,8 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     const err = error.response?.data;
-    const message = err.message;
-    console.log("Error message", message);
+    // const message = err.message;
+    // console.log("Error message", message);
     return Promise.reject(err);
   }
 );
