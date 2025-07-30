@@ -24,7 +24,8 @@ const SignUpScreen = () => {
   const [isValid, setIsValid] = useState(true);
   const [loading, setIsLoading] = useState(false);
 
-  const { user, pushToken, setUser } = useUserStore();
+  const { user, pushToken } = useUserStore();
+  const setUser = useUserStore.getState().setUser;
 
   useEffect(() => {
     (async () => {
@@ -92,9 +93,19 @@ const SignUpScreen = () => {
       const response = await signUp({ username, deviceId, pushToken });
 
       if (response.success) {
-        // router.dismiss();
+        const userData = response.data.user;
+        const accessToken = response.data.token.accessToken;
 
-        console.log("suser signed up", response);
+        setUser({
+          id: userData.id,
+          token: accessToken,
+          points: userData.totalPoints,
+          deviceId: userData.deviceId,
+          streak: userData.currentStreak,
+          pushToken: userData.pushToken, // optional but available
+        });
+
+        console.log("Zustand user set:", useUserStore.getState().user);
       }
     } catch (error: any) {
       console.error("Sign-up error", error);
