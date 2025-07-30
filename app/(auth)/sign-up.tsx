@@ -25,6 +25,9 @@ const SignUpScreen = () => {
       setDeviceId(id);
     })();
   }, []);
+
+  const validateUsername = (text: string) => {};
+
   const handleContinue = async () => {
     if (username.trim() === "") {
       return Alert.alert("Error", "Username is required");
