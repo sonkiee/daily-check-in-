@@ -29,7 +29,7 @@ export const useAuth = () => {
           setUser({ username: res.data.username });
         }
       } catch (err) {
-        console.log("No user found for this device ID.");
+        console.log("No user found for this device ID.", err);
         setUser(null);
       } finally {
         setLoading(false);
