@@ -1,5 +1,6 @@
 import Wrapper from "@/components/ui/Wrapper";
-import React from "react";
+import { router } from "expo-router";
+import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -11,11 +12,22 @@ import {
 } from "react-native";
 
 const SignUpScreen = () => {
+  const [username, setUsername] = useState("");
+
+  const handleContinue = () => {
+    // Add validation logic here if needed
+    if (username.trim() !== "") {
+      router.dismiss();
+    }
+  };
+
   return (
     <Wrapper>
       <KeyboardAvoidingView
+        // behavior={Platform.select({ ios: "padding", android: undefined })}
+        behavior={Platform.select({ ios: "padding", android: "height" })}
+        keyboardVerticalOffset={Platform.select({ ios: 0, android: 20 })}
         style={styles.container}
-        behavior={Platform.select({ ios: "padding", android: undefined })}
       >
         <View style={styles.content}>
           <Text style={styles.title}>Choose a username</Text>
@@ -26,10 +38,21 @@ const SignUpScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="e.g. joshua_dev"
-            placeholderTextColor="#aaa"
+            placeholderTextColor="#888"
+            value={username}
+            onChangeText={setUsername}
+            autoCapitalize="none"
+            autoCorrect={false}
           />
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={[
+              styles.button,
+              username.trim() === "" && styles.buttonDisabled,
+            ]}
+            onPress={handleContinue}
+            disabled={username.trim() === ""}
+          >
             <Text style={styles.buttonText}>Continue</Text>
           </TouchableOpacity>
         </View>
@@ -42,38 +65,41 @@ export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: "#fff",
-    justifyContent: "center",
+    flex: 1,
     padding: 24,
+    justifyContent: "center",
   },
   content: {
-    gap: 16,
+    gap: 20,
   },
   title: {
-    fontSize: 22,
-    fontWeight: "600",
-    color: "#111",
+    fontSize: 24,
+    fontWeight: "700",
+    color: "#fff",
   },
   subtitle: {
-    fontSize: 14,
-    color: "#555",
+    fontSize: 15,
+    color: "#ccc",
   },
   input: {
     height: 48,
-    borderColor: "#ddd",
+    borderColor: "#444",
     borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     fontSize: 16,
-    color: "#000",
+    backgroundColor: "#1a1a1a",
+    color: "#fff",
   },
   button: {
-    marginTop: 12,
+    marginTop: 20,
     backgroundColor: "#111",
     paddingVertical: 14,
     borderRadius: 10,
     alignItems: "center",
+  },
+  buttonDisabled: {
+    backgroundColor: "#333",
   },
   buttonText: {
     color: "#fff",

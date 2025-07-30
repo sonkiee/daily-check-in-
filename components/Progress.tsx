@@ -91,7 +91,7 @@ const Progress = ({
       <View style={styles.innerContent}>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => router.navigate("/(auth)")}
+          onPress={() => router.navigate("/(auth)/sign-up")}
         >
           <Text style={styles.innerText}>{points}</Text>
           <Text style={styles.pointsLabel}>points</Text>
