@@ -98,6 +98,7 @@ const SignUpScreen = () => {
 
         setUser({
           id: userData.id,
+          username: userData.username,
           token: accessToken,
           points: userData.totalPoints,
           deviceId: userData.deviceId,

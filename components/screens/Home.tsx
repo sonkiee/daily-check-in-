@@ -2,40 +2,57 @@ import Progress from "@/components/Progress";
 import SuccessModal from "@/components/SuccessModal";
 import Button from "@/components/ui/Button";
 import Wrapper from "@/components/ui/Wrapper";
-import { router } from "expo-router";
+import doCheckin from "@/services/check-in";
+import { useUserStore } from "@/store/user";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 const HomeScreen = () => {
-  const [points, setPoints] = useState(750);
-  const [totalPoints, setTotalPoints] = useState(1250);
-  const [streak, setStreak] = useState(7);
+  const { user } = useUserStore();
+
+  const [points, setPoints] = useState(user?.points ?? 0);
+
+  const [loading, setLoading] = useState(false);
+
+  const [totalPoints, setTotalPoints] = useState(user?.points ?? 0); // You only store totalPoints, not session points
+  const [streak, setStreak] = useState(user?.streak ?? 0);
+
   const [canClaim, setCanClaim] = useState(true);
   const [lastClaimTime, setLastClaimTime] = useState<Date | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useState({
-    username: "",
-  });
 
   const targetPoints = 1000;
   const progress = Math.min(points / targetPoints, 1);
 
-  const onCheckInPress = () => {
-    if (user.username === "") {
-      return router.navigate("/(auth)/sign-up");
+  // const onCheckInPress = async () => {
+  //   if (user.username === "") {
+  //     return router.navigate("/(auth)/sign-up");
+  //   }
+
+  //   const earned = 25 + streak * 5;
+  //   setPoints((prev) => prev + earned);
+  //   setTotalPoints((prev) => prev + earned);
+  //   setStreak((prev) => prev + 1);
+  //   // setCanClaim(false);
+  //   setLastClaimTime(new Date());
+  //   // setShowModal(true);
+
+  //   // setTimeout(() => {
+  //   //   setCanClaim(true);
+  //   // }, 5000); // Simulated cooldown
+  // };
+
+  const onCheckInPress = async () => {
+    setLoading(true);
+
+    try {
+      const response = await doCheckin();
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-
-    const earned = 25 + streak * 5;
-    setPoints((prev) => prev + earned);
-    setTotalPoints((prev) => prev + earned);
-    setStreak((prev) => prev + 1);
-    setCanClaim(false);
-    setLastClaimTime(new Date());
-    setShowModal(true);
-
-    setTimeout(() => {
-      setCanClaim(true);
-    }, 5000); // Simulated cooldown
   };
 
   const handleCloseModal = useCallback(() => {
@@ -84,7 +101,8 @@ const HomeScreen = () => {
                 : "Claimed Today ✓"
             }
             onPress={onCheckInPress}
-            disabled={!canClaim}
+            loading={loading}
+            disabled={!canClaim || loading}
           />
         </View>
       </View>

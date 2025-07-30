@@ -5,6 +5,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 type User = {
   id: string;
   token: string;
+  username: string;
   points: number;
   deviceId: string;
   streak: number;
