@@ -25,10 +25,10 @@ const SignUpScreen = () => {
   const [isValid, setIsValid] = useState(true);
   const [loading, setIsLoading] = useState(false);
 
-  const { user } = useUserStore();
+  const { user, pushToken } = useUserStore();
 
   const p = user?.pushToken;
-  console.log("a little push", p);
+  console.log("a little push", user?.pushToken || pushToken);
 
   useEffect(() => {
     (async () => {
