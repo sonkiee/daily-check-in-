@@ -7,17 +7,17 @@ import { ActivityIndicator, View } from "react-native";
 const Index = () => {
   const { loading } = useAuth();
 
-  const push = usePushTokenAync();
+  const pushToken = usePushTokenAync();
 
-  console.log("pusho token", push);
-
-  if (loading) {
+  if (loading || !pushToken) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" color="red" />
       </View>
     );
   }
+
+  console.log("pusho token", pushToken);
 
   return <Redirect href="/(app)" />;
 };
