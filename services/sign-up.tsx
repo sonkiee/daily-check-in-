@@ -19,7 +19,7 @@ const signUp = async ({
 
     return {
       success: true,
-      data: response,
+      data: response.data,
     };
   } catch (error: any) {
     console.error("Sign up failed:", error);
