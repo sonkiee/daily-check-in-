@@ -27,23 +27,11 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// apiClient.interceptors.response.use(
-//   (response) => {
-//     return response.data;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
-
 apiClient.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response;
   },
   (error) => {
-    const apiError = error.response?.data;
-    const message = apiError?.message || "An unknown error occurred";
-
-    return Promise.reject(new Error(message));
+    return Promise.reject(error);
   }
 );
