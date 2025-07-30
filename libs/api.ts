@@ -32,6 +32,8 @@ apiClient.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    return Promise.reject(error);
+    if (error instanceof Error) {
+      return Promise.reject(error.message);
+    }
   }
 );
