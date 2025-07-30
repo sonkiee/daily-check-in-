@@ -15,6 +15,7 @@ type UserStore = {
   user: User | null;
   isLoading: boolean;
   refreshing: boolean;
+  pushToken?: string;
   setUser: (user: User) => void;
   clearUser: () => void;
   setRefreshing: (state: boolean) => void;
@@ -27,13 +28,15 @@ export const useUserStore = create<UserStore>()(
       user: null,
       isLoading: false,
       refreshing: false,
+      pushToken: undefined,
       setUser: (user) => set({ user }),
       clearUser: () => set({ user: null }),
       setRefreshing: (state) => set({ refreshing: state }),
       setPushToken: (token) =>
-        set((state) =>
-          state.user ? { user: { ...state.user, pushToken: token } } : {}
-        ),
+        set((state) => ({
+          pushToken: token, // Set standalone pushToken
+          user: state.user ? { ...state.user, pushToken: token } : state.user,
+        })),
     }),
     {
       name: "user-storage",
