@@ -19,6 +19,9 @@ apiClient.interceptors.request.use(
     if (config.data instanceof FormData) {
       config.headers["Content-Type"] = "multipart/form-data";
     }
+
+    const fullUrl = `${config.baseURL}${config.url}`;
+    console.log("FULL REQUEST URL:", fullUrl);
     return config;
   },
   (error) => Promise.reject(error)
