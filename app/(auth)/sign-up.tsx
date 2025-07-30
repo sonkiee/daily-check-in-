@@ -1,7 +1,7 @@
 import Wrapper from "@/components/ui/Wrapper";
-import * as Device from "expo-device";
+import { genDeviceId } from "@/utils/device-id";
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -14,6 +14,14 @@ import {
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState("");
+  const [deviceId, setDeviceId] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { id } = await genDeviceId();
+      setDeviceId(id);
+    })();
+  }, []);
 
   const handleContinue = () => {
     // Add validation logic here if needed
@@ -46,9 +54,7 @@ const SignUpScreen = () => {
             autoCorrect={false}
           />
 
-          <Text style={styles.deviceId}>
-            Device ID: {Device.osInternalBuildId || "N/A"}
-          </Text>
+          <Text style={styles.deviceId}>Device ID: {deviceId || "N/A"}</Text>
 
           <TouchableOpacity
             style={[
