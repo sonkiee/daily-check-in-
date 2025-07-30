@@ -2,6 +2,7 @@ import Progress from "@/components/Progress";
 import SuccessModal from "@/components/SuccessModal";
 import Button from "@/components/ui/Button";
 import Wrapper from "@/components/ui/Wrapper";
+import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -12,11 +13,18 @@ const HomeScreen = () => {
   const [canClaim, setCanClaim] = useState(true);
   const [lastClaimTime, setLastClaimTime] = useState<Date | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState({
+    username: "",
+  });
 
   const targetPoints = 1000;
   const progress = Math.min(points / targetPoints, 1);
 
   const onCheckInPress = () => {
+    if (user.username === "") {
+      return router.navigate("/(auth)/sign-up");
+    }
+
     const earned = 25 + streak * 5;
     setPoints((prev) => prev + earned);
     setTotalPoints((prev) => prev + earned);

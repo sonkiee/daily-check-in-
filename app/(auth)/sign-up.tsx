@@ -1,4 +1,5 @@
 import Wrapper from "@/components/ui/Wrapper";
+import * as Device from "expo-device";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -45,6 +46,10 @@ const SignUpScreen = () => {
             autoCorrect={false}
           />
 
+          <Text style={styles.deviceId}>
+            Device ID: {Device.osInternalBuildId || "N/A"}
+          </Text>
+
           <TouchableOpacity
             style={[
               styles.button,
@@ -83,13 +88,18 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 48,
-    borderColor: "#444",
-    borderWidth: 1,
+    borderColor: "#1a1a1a",
+    // borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 14,
     fontSize: 16,
     backgroundColor: "#1a1a1a",
     color: "#fff",
+  },
+  deviceId: {
+    fontSize: 14,
+    color: "#f5f5f5",
+    fontFamily: "monospace",
   },
   button: {
     marginTop: 20,
