@@ -1,5 +1,6 @@
 import Wrapper from "@/components/ui/Wrapper";
 import { genDeviceId } from "@/utils/device-id";
+import * as Clipboard from "expo-clipboard";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
@@ -54,7 +55,15 @@ const SignUpScreen = () => {
             autoCorrect={false}
           />
 
-          <Text style={styles.deviceId}>Device ID: {deviceId || "N/A"}</Text>
+          <TouchableOpacity
+            onPress={async () => {
+              if (deviceId) {
+                await Clipboard.setStringAsync(deviceId);
+              }
+            }}
+          >
+            <Text style={styles.deviceId}>Device ID: {deviceId || "N/A"}</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity
             style={[

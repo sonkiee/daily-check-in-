@@ -3,10 +3,7 @@ import { apiClient } from "@/libs/api"; // or your api wrapper
 import * as SecureStore from "expo-secure-store";
 import { useEffect, useState } from "react";
 
-const DEVICE_ID_KEY = "deviceId";
-
 export const useAuth = () => {
-  const [deviceId, setDeviceId] = useState<string | null>(null);
   const [user, setUser] = useState<{ username: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -32,5 +29,5 @@ export const useAuth = () => {
     })();
   }, []);
 
-  return { user, deviceId, loading };
+  return { user, loading };
 };
