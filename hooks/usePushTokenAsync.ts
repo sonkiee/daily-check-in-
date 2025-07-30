@@ -2,7 +2,8 @@ import { registerForPushNotificationsAsync } from "@/libs/notification";
 import { useEffect, useState } from "react";
 
 const usePushTokenAync = () => {
-  const [pushToken, setPushToken] = useState("");
+  const [pushToken, setPushToken] = useState<string | null>(null);
+
   useEffect(() => {
     (async () => {
       const token = await registerForPushNotificationsAsync();
