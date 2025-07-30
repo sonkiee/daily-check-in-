@@ -27,6 +27,9 @@ const SignUpScreen = () => {
 
   const { user } = useUserStore();
 
+  const p = user?.pushToken;
+  console.log("a little push", p);
+
   useEffect(() => {
     (async () => {
       const { id } = await genDeviceId();
