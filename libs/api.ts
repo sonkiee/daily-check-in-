@@ -29,9 +29,10 @@ apiClient.interceptors.request.use(
 
 apiClient.interceptors.response.use(
   (response) => {
-    return response;
+    return response.data;
   },
   (error) => {
-    return Promise.reject(error);
+    console.error("Response Error:", error.response || error);
+    return Promise.reject(error.response || error);
   }
 );
