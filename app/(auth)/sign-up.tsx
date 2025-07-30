@@ -89,24 +89,26 @@ const SignUpScreen = () => {
             This will be your unique ID – no spaces or special characters.
           </Text>
 
-          <TextInput
-            style={[
-              styles.input,
-              !isValid && username.length > 0 && styles.inputError,
-            ]}
-            placeholder="e.g. joshua_dev"
-            placeholderTextColor="#888"
-            value={username}
-            onChangeText={validateUsername}
-            autoCapitalize="none"
-            autoCorrect={false}
-            maxLength={20}
-            returnKeyType="done"
-            onSubmitEditing={handleContinue}
-          />
-          {errorMessage ? (
-            <Text style={styles.errorText}>{errorMessage}</Text>
-          ) : null}
+          <View>
+            <TextInput
+              style={[
+                styles.input,
+                !isValid && username.length > 0 && styles.inputError,
+              ]}
+              placeholder="e.g. joshua_dev"
+              placeholderTextColor="#888"
+              value={username}
+              onChangeText={validateUsername}
+              autoCapitalize="none"
+              autoCorrect={false}
+              maxLength={20}
+              returnKeyType="done"
+              onSubmitEditing={handleContinue}
+            />
+            {errorMessage ? (
+              <Text style={styles.errorText}>{errorMessage}</Text>
+            ) : null}
+          </View>
 
           <TouchableOpacity
             onPress={async () => {
@@ -184,7 +186,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: "#ff4444",
     fontSize: 14,
-    marginTop: -8,
+    marginTop: 2,
     marginLeft: 4,
   },
   inputError: {
