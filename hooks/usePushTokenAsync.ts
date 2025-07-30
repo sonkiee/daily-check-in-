@@ -4,16 +4,21 @@ import { useEffect } from "react";
 
 const usePushTokenAync = () => {
   const setPushToken = useUserStore((state) => state.setPushToken);
+  const pushToken = useUserStore((state) => state.pushToken);
 
   useEffect(() => {
     (async () => {
-      const token = await registerForPushNotificationsAsync();
-      if (token) {
-        console.log("Push Token:", token);
-        setPushToken(token);
+      if (!pushToken) {
+        const token = await registerForPushNotificationsAsync();
+        if (token) {
+          console.log("Push Token:", token);
+          setPushToken(token);
+        }
       }
     })();
-  }, [setPushToken]);
+  }, [setPushToken, pushToken]);
+
+  return pushToken;
 };
 
 export default usePushTokenAync;

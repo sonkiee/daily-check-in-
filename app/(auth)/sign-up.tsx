@@ -1,5 +1,4 @@
 import Wrapper from "@/components/ui/Wrapper";
-import usePushTokenAync from "@/hooks/usePushTokenAsync";
 import signUp from "@/services/sign-up";
 import { useUserStore } from "@/store/user";
 import { genDeviceId } from "@/utils/device-id";
@@ -25,12 +24,8 @@ const SignUpScreen = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [loading, setIsLoading] = useState(false);
-  const [tt, setTt] = useState(false);
 
   const { user, pushToken } = useUserStore();
-  usePushTokenAync();
-
-  console.log("a little push", pushToken);
 
   useEffect(() => {
     (async () => {
