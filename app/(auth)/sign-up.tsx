@@ -1,5 +1,6 @@
 import Wrapper from "@/components/ui/Wrapper";
 import signUp from "@/services/sign-up";
+import { useUserStore } from "@/store/user";
 import { genDeviceId } from "@/utils/device-id";
 import { cleanUsername, isValidUsername } from "@/utils/username";
 import * as Clipboard from "expo-clipboard";
@@ -23,6 +24,8 @@ const SignUpScreen = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [loading, setIsLoading] = useState(false);
+
+  const { user } = useUserStore();
 
   useEffect(() => {
     (async () => {
