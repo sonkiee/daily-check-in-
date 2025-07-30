@@ -1,12 +1,12 @@
 import { useAuth } from "@/hooks/useAuth";
-import usePushNotifications from "@/hooks/usePushNotifications";
+import { registerForPushNotificationsAsync } from "@/libs/notification";
 import { Redirect } from "expo-router";
 import React from "react";
 import { ActivityIndicator, View } from "react-native";
 
 const Index = () => {
   const { loading } = useAuth();
-  const pushToken = usePushNotifications();
+  const pushToken = registerForPushNotificationsAsync();
 
   console.log("pusho token", pushToken);
 
