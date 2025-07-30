@@ -10,7 +10,6 @@ const usePushNotifications = () => {
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) => {
       if (token) setExpoPushToken(token);
-      console.log("show push token", token);
     });
 
     notificationListener.current =
