@@ -1,6 +1,5 @@
 // hooks/useAuth.ts
 import { apiClient } from "@/libs/api"; // or your api wrapper
-import * as Crypto from "expo-crypto";
 import * as SecureStore from "expo-secure-store";
 import { useEffect, useState } from "react";
 
@@ -13,23 +12,19 @@ export const useAuth = () => {
 
   useEffect(() => {
     (async () => {
-      let id = await SecureStore.getItemAsync(DEVICE_ID_KEY);
-
-      if (!id) {
-        id = Crypto.randomUUID();
-        await SecureStore.setItemAsync(DEVICE_ID_KEY, id);
-      }
-
-      setDeviceId(id);
-
-      // Attempt to fetch user
       try {
+        const token = await SecureStore.getItemAsync("accessToken");
+        if (!token) {
+          setUser(null);
+          setLoading(false);
+          return;
+        }
         const res = await apiClient.get(`/user/me/`);
         if (res.data && res.data.username) {
           setUser({ username: res.data.username });
         }
       } catch (err) {
-        console.log("No user found for this device ID.", err);
+        console.log("Failed to fetch authenticated user", err);
         setUser(null);
       } finally {
         setLoading(false);
