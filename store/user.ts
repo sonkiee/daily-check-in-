@@ -1,5 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, StorageValue } from "zustand/middleware";
 
 type User = {
   id: string;
@@ -22,7 +23,7 @@ type UserStore = {
 
 export const useUserStore = create<UserStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       isLoading: false,
       refreshing: false,
@@ -36,6 +37,18 @@ export const useUserStore = create<UserStore>()(
     }),
     {
       name: "user-storage",
+      storage: {
+        getItem: async (name): Promise<StorageValue<UserStore> | null> => {
+          const value = await AsyncStorage.getItem(name);
+          return value ? JSON.parse(value) : null;
+        },
+        setItem: async (name, value): Promise<void> => {
+          await AsyncStorage.setItem(name, JSON.stringify(value));
+        },
+        removeItem: async (name): Promise<void> => {
+          await AsyncStorage.removeItem(name);
+        },
+      },
     }
   )
 );

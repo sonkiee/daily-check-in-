@@ -6,10 +6,9 @@ import { ActivityIndicator, View } from "react-native";
 
 const Index = () => {
   const { loading } = useAuth();
-
   const pushToken = usePushTokenAync();
 
-  if (loading || !pushToken) {
+  if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" color="red" />
