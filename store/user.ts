@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
-import { persist, StorageValue } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 type User = {
   id: string;
@@ -32,26 +32,11 @@ export const useUserStore = create<UserStore>()(
       setUser: (user) => set({ user }),
       clearUser: () => set({ user: null }),
       setRefreshing: (state) => set({ refreshing: state }),
-      setPushToken: (token) =>
-        set((state) => ({
-          pushToken: token, // Set standalone pushToken
-          user: state.user ? { ...state.user, pushToken: token } : state.user,
-        })),
+      setPushToken: (token) => set({ pushToken: token }),
     }),
     {
       name: "user-storage",
-      storage: {
-        getItem: async (name): Promise<StorageValue<UserStore> | null> => {
-          const value = await AsyncStorage.getItem(name);
-          return value ? JSON.parse(value) : null;
-        },
-        setItem: async (name, value): Promise<void> => {
-          await AsyncStorage.setItem(name, JSON.stringify(value));
-        },
-        removeItem: async (name): Promise<void> => {
-          await AsyncStorage.removeItem(name);
-        },
-      },
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );
