@@ -6,6 +6,7 @@ type User = {
   points: number;
   deviceId: string;
   streak: number;
+  pushToken?: string;
 };
 
 type UserStore = {
@@ -15,6 +16,7 @@ type UserStore = {
   setUser: (user: User) => void;
   clearUser: () => void;
   setRefreshing: (state: boolean) => void;
+  setPushToken: (token: string) => void;
 };
 
 export const useUserStore = create<UserStore>((set) => ({
@@ -24,4 +26,8 @@ export const useUserStore = create<UserStore>((set) => ({
   setUser: (user) => set({ user }),
   clearUser: () => set({ user: null }),
   setRefreshing: (state) => set({ refreshing: state }),
+  setPushToken: (token) =>
+    set((state) =>
+      state.user ? { user: { ...state.user, pushToken: token } } : {}
+    ),
 }));
