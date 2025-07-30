@@ -20,6 +20,7 @@ const SignUpScreen = () => {
   const [deviceId, setDeviceId] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isValid, setIsValid] = useState(true);
+  const [loading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -62,6 +63,8 @@ const SignUpScreen = () => {
       return Alert.alert("Error", "Device ID not available");
     }
 
+    setIsLoading(true);
+
     try {
       const response = await signUp({ username, deviceId });
 
@@ -70,6 +73,8 @@ const SignUpScreen = () => {
       }
     } catch (error: any) {
       console.error("Sign-up error", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
