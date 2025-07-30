@@ -4,7 +4,6 @@ import { useUserStore } from "@/store/user";
 import { genDeviceId } from "@/utils/device-id";
 import { cleanUsername, isValidUsername } from "@/utils/username";
 import * as Clipboard from "expo-clipboard";
-import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -93,7 +92,9 @@ const SignUpScreen = () => {
       const response = await signUp({ username, deviceId, pushToken });
 
       if (response.success) {
-        router.dismiss();
+        // router.dismiss();
+
+        console.log("suser signed up", response);
       }
     } catch (error: any) {
       console.error("Sign-up error", error);
