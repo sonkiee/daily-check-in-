@@ -15,7 +15,10 @@ apiClient.interceptors.request.use(
     const token = await Storage.get("accessToken");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+
+      console.log("Token attached to request:", token);
     }
+
     if (config.data instanceof FormData) {
       config.headers["Content-Type"] = "multipart/form-data";
     }
