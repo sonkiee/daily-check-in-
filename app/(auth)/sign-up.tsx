@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   deviceId: {
     fontSize: 14,
-    color: "#f5f5f5",
+    color: "#ccc",
     fontFamily: "monospace",
   },
   button: {
