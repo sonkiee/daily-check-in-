@@ -1,9 +1,11 @@
 import Wrapper from "@/components/ui/Wrapper";
+import signUp from "@/services/sign-up";
 import { genDeviceId } from "@/utils/device-id";
 import * as Clipboard from "expo-clipboard";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -23,11 +25,23 @@ const SignUpScreen = () => {
       setDeviceId(id);
     })();
   }, []);
+  const handleContinue = async () => {
+    if (username.trim() === "") {
+      return Alert.alert("Error", "Username is required");
+    }
 
-  const handleContinue = () => {
-    // Add validation logic here if needed
-    if (username.trim() !== "") {
-      router.dismiss();
+    if (!deviceId) {
+      return Alert.alert("Error", "Device ID not available");
+    }
+
+    try {
+      const response = await signUp({ username, deviceId });
+
+      if (response.success) {
+        router.dismiss();
+      }
+    } catch (error: any) {
+      console.error("Sign-up error", error);
     }
   };
 
