@@ -32,6 +32,7 @@ apiClient.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    return Promise.reject(error);
+    const message = error.message;
+    return Promise.reject(message);
   }
 );
