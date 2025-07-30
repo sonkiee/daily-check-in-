@@ -73,6 +73,8 @@ const SignUpScreen = () => {
     }
   };
 
+  const canContinue = username.length >= 3 && isValid;
+
   return (
     <Wrapper>
       <KeyboardAvoidingView
@@ -88,14 +90,23 @@ const SignUpScreen = () => {
           </Text>
 
           <TextInput
-            style={styles.input}
+            style={[
+              styles.input,
+              !isValid && username.length > 0 && styles.inputError,
+            ]}
             placeholder="e.g. joshua_dev"
             placeholderTextColor="#888"
             value={username}
-            onChangeText={setUsername}
+            onChangeText={validateUsername}
             autoCapitalize="none"
             autoCorrect={false}
+            maxLength={20}
+            returnKeyType="done"
+            onSubmitEditing={handleContinue}
           />
+          {errorMessage ? (
+            <Text style={styles.errorText}>{errorMessage}</Text>
+          ) : null}
 
           <TouchableOpacity
             onPress={async () => {
@@ -108,12 +119,9 @@ const SignUpScreen = () => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[
-              styles.button,
-              username.trim() === "" && styles.buttonDisabled,
-            ]}
+            style={[styles.button, !canContinue && styles.buttonDisabled]}
             onPress={handleContinue}
-            disabled={username.trim() === ""}
+            disabled={!canContinue}
           >
             <Text style={styles.buttonText}>Continue</Text>
           </TouchableOpacity>
@@ -172,5 +180,14 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "600",
     fontSize: 16,
+  },
+  errorText: {
+    color: "#ff4444",
+    fontSize: 14,
+    marginTop: -8,
+    marginLeft: 4,
+  },
+  inputError: {
+    borderColor: "#ff4444",
   },
 });
