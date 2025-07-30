@@ -7,10 +7,7 @@ const doCheckin = async () => {
     return { success: true, response };
   } catch (error: any) {
     console.error("Check-in failed:", error);
-    return {
-      success: false,
-      error: error,
-    };
+    throw new Error(error?.message || "Unknown error during Check-in");
   }
 };
 
