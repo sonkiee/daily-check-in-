@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type User = {
   id: string;
@@ -19,15 +20,22 @@ type UserStore = {
   setPushToken: (token: string) => void;
 };
 
-export const useUserStore = create<UserStore>((set) => ({
-  user: null,
-  isLoading: false,
-  refreshing: false,
-  setUser: (user) => set({ user }),
-  clearUser: () => set({ user: null }),
-  setRefreshing: (state) => set({ refreshing: state }),
-  setPushToken: (token) =>
-    set((state) =>
-      state.user ? { user: { ...state.user, pushToken: token } } : {}
-    ),
-}));
+export const useUserStore = create<UserStore>()(
+  persist(
+    (set) => ({
+      user: null,
+      isLoading: false,
+      refreshing: false,
+      setUser: (user) => set({ user }),
+      clearUser: () => set({ user: null }),
+      setRefreshing: (state) => set({ refreshing: state }),
+      setPushToken: (token) =>
+        set((state) =>
+          state.user ? { user: { ...state.user, pushToken: token } } : {}
+        ),
+    }),
+    {
+      name: "user-storage",
+    }
+  )
+);
