@@ -1,5 +1,6 @@
 import { useAuth } from "@/hooks/useAuth";
 import usePushNotifications from "@/hooks/usePushNotifications";
+import usePushTokenAync from "@/hooks/usePushTokenAsync";
 import { registerForPushNotificationsAsync } from "@/libs/notification";
 import { Redirect } from "expo-router";
 import React from "react";
@@ -9,6 +10,7 @@ const Index = () => {
   const { loading } = useAuth();
   const pushToken = registerForPushNotificationsAsync();
   const tokens = usePushNotifications();
+  usePushTokenAync();
 
   console.log("pusho token", pushToken);
   console.log("oush", tokens);
