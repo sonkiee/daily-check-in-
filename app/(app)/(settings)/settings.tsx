@@ -30,6 +30,8 @@ const SettingsScreen = () => {
   const [streakReminders, setStreakReminders] = useState(false);
 
   const { clearUser } = useUserStore();
+  const { user, accessToken } = useUserStore.getState();
+  console.log("User after logout:", user, accessToken);
 
   const handleNotificationSettings = () =>
     Alert.alert(
@@ -39,11 +41,17 @@ const SettingsScreen = () => {
 
   const handleSupport = () => Alert.alert("Support", "Get help and support");
 
-  const handleAbout = () =>
+  const handleAbout = async () =>
     Alert.alert("About", "App version 1.0.0\nBuilt with React Native");
 
-  const handleLogout = () => {
-    clearUser();
+  const handleLogout = async () => {
+    const response = await clearUser();
+
+    if (response) {
+      Alert.alert("Logged out", "You have cleared your session");
+    } else {
+      Alert.alert("Oops", "Something went wrong while logging out.");
+    }
   };
 
   return (

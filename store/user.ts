@@ -28,7 +28,7 @@ type UserStore = {
   setLoading: (state: boolean) => void;
   setRefreshing: (state: boolean) => void;
 
-  clearUser: () => void;
+  clearUser: () => Promise<boolean>;
 };
 
 export const useUserStore = create<UserStore>()(
@@ -50,7 +50,14 @@ export const useUserStore = create<UserStore>()(
           accessToken: null,
           pushToken: null,
         });
-        await AsyncStorage.removeItem("user-storage");
+
+        try {
+          await AsyncStorage.removeItem("user-storage");
+          return true;
+        } catch (error) {
+          console.error("Error clearing user data:", error);
+          return false;
+        }
       },
 
       setLoading: (state) => set({ loading: state }),
