@@ -44,7 +44,7 @@ const HomeScreen = () => {
   // };
 
   const onCheckInPress = async () => {
-    if (user?.username === "") {
+    if (!user?.username) {
       return router.navigate("/(auth)/sign-up");
     }
 
