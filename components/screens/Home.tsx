@@ -6,7 +6,13 @@ import doCheckin from "@/services/check-in";
 import { useUserStore } from "@/store/user";
 import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 const HomeScreen = () => {
   const { user, setUser } = useUserStore();
@@ -21,6 +27,17 @@ const HomeScreen = () => {
   const [canClaim, setCanClaim] = useState(true);
   const [lastClaimTime, setLastClaimTime] = useState<Date | null>(null);
   const [showModal, setShowModal] = useState(false);
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+
+    // Simulate fetching data
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   const targetPoints = 1000;
   const progress = Math.min(points / targetPoints, 1);
@@ -75,7 +92,10 @@ const HomeScreen = () => {
   return (
     <Wrapper>
       <ScrollView
-        scrollEnabled
+        // scrollEnabled={refreshing} // only scroll when refreshing
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         style={styles.container}
         contentContainerStyle={{
           justifyContent: "center",
