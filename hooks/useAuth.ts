@@ -1,33 +1,37 @@
 // hooks/useAuth.ts
 import { apiClient } from "@/libs/api"; // or your api wrapper
-import * as SecureStore from "expo-secure-store";
-import { useEffect, useState } from "react";
+import { useUserStore } from "@/store/user";
+import { useEffect } from "react";
 
 export const useAuth = () => {
-  const [user, setUser] = useState<{ username: string } | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, setUser, loading, setLoading } = useUserStore();
 
   useEffect(() => {
     (async () => {
+      // if (!user?.token) {
+      //   setLoading(false);
+      //   return;
+      // }
       try {
-        const token = await SecureStore.getItemAsync("accessToken");
-        if (!token) {
-          setUser(null);
-          setLoading(false);
-          return;
-        }
-        const res = await apiClient.get(`/user/me/`);
-        if (res.data && res.data.username) {
-          setUser({ username: res.data.username });
-        }
-      } catch (err) {
-        console.log("Failed to fetch authenticated user", err);
-        setUser(null);
+        const response = await apiClient.get(`/user/me/`);
+        const userData = response.data.user;
+
+        console.log("profile date", response);
+
+        setUser({
+          id: userData.id,
+          username: userData.username,
+          points: userData.totalPoints,
+          deviceId: userData.deviceId,
+          streak: userData.currentStreak,
+        });
+      } catch (error) {
+        console.log("Failed to fetch authenticated user", error);
       } finally {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [setLoading, setUser]);
 
   return { user, loading };
 };

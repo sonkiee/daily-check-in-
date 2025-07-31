@@ -1,5 +1,4 @@
 import axios from "axios";
-import Storage from "./storage";
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 
@@ -12,7 +11,9 @@ export const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   async (config) => {
-    const token = await Storage.get("accessToken");
+    // const token = useUserStore.getState().accessToken;
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcyZTZjYzA4LWNlM2QtNDdkZi1iYTY3LTVjM2M3MTQ1MWIzYSIsImRldmljZUlkIjoiamRqIiwiaWF0IjoxNzUzOTI4MTU3LCJleHAiOjE3NTQ1MzI5NTd9.sdg--saptTwegCeJ0swxrw69EeCOKLJmcPNK0IOh2FY";
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
 

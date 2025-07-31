@@ -4,36 +4,55 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 type User = {
   id: string;
-  token: string;
   username: string;
   points: number;
+  // totalPoints: number;
+  // currentStreak: number;
+  // longestStreak: number;
+  // lastCheckin: string;
   deviceId: string;
   streak: number;
-  pushToken?: string;
 };
 
 type UserStore = {
   user: User | null;
-  isLoading: boolean;
+  accessToken: string | null;
+  pushToken?: string | null;
+  loading: boolean;
   refreshing: boolean;
-  pushToken?: string;
+
   setUser: (user: User) => void;
-  clearUser: () => void;
-  setRefreshing: (state: boolean) => void;
+  setAccessToken: (token: string) => void;
   setPushToken: (token: string) => void;
+
+  setLoading: (state: boolean) => void;
+  setRefreshing: (state: boolean) => void;
+
+  clearUser: () => void;
 };
 
 export const useUserStore = create<UserStore>()(
   persist(
     (set, get) => ({
       user: null,
-      isLoading: false,
+      accessToken: null,
+      pushToken: null,
+      loading: false,
       refreshing: false,
-      pushToken: undefined,
+
       setUser: (user) => set({ user }),
-      clearUser: () => set({ user: null }),
-      setRefreshing: (state) => set({ refreshing: state }),
+      setAccessToken: (token) => set({ accessToken: token }),
       setPushToken: (token) => set({ pushToken: token }),
+
+      clearUser: () =>
+        set({
+          user: null,
+          accessToken: null,
+          pushToken: null,
+        }),
+
+      setLoading: (state) => set({ loading: state }),
+      setRefreshing: (state) => set({ refreshing: state }),
     }),
     {
       name: "user-storage",

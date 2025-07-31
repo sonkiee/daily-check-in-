@@ -24,7 +24,7 @@ const SignUpScreen = () => {
   const [isValid, setIsValid] = useState(true);
   const [loading, setIsLoading] = useState(false);
 
-  const { user, pushToken } = useUserStore();
+  const { user, pushToken, setAccessToken } = useUserStore();
   const setUser = useUserStore.getState().setUser;
 
   useEffect(() => {
@@ -99,12 +99,12 @@ const SignUpScreen = () => {
         setUser({
           id: userData.id,
           username: userData.username,
-          token: accessToken,
           points: userData.totalPoints,
           deviceId: userData.deviceId,
           streak: userData.currentStreak,
-          pushToken: userData.pushToken, // optional but available
         });
+
+        setAccessToken(response.data.token.accessToken);
 
         console.log("Zustand user set:", useUserStore.getState().user);
       }
