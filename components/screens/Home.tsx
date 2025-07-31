@@ -52,10 +52,11 @@ const HomeScreen = () => {
 
     try {
       const response = await doCheckin();
+      const data = response.response.checkin;
       const updatedUser = {
         ...user,
-        points: user.points,
-        // streak: ,
+        points: data.pointsEarned,
+        streak: data.streakDay,
       };
 
       setUser(updatedUser);
