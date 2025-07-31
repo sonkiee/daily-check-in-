@@ -4,6 +4,7 @@ import { useUserStore } from "@/store/user";
 import { genDeviceId } from "@/utils/device-id";
 import { cleanUsername, isValidUsername } from "@/utils/username";
 import * as Clipboard from "expo-clipboard";
+import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -107,6 +108,7 @@ const SignUpScreen = () => {
         setAccessToken(accessToken);
 
         console.log("Zustand user set:", useUserStore.getState().user);
+        router.dismiss();
       }
     } catch (error: any) {
       console.error("Sign-up error", error);
