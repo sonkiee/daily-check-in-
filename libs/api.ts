@@ -19,6 +19,8 @@ apiClient.interceptors.request.use(
       console.log("Token attached to request:", token);
     }
 
+    console.log("Token attached to request:", token);
+
     if (config.data instanceof FormData) {
       config.headers["Content-Type"] = "multipart/form-data";
     }
