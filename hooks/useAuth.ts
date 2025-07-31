@@ -4,10 +4,7 @@ import { useUserStore } from "@/store/user";
 import { useEffect } from "react";
 
 export const useAuth = () => {
-  const { user, setUser, loading, setLoading } = useUserStore();
-
-  const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcyZTZjYzA4LWNlM2QtNDdkZi1iYTY3LTVjM2M3MTQ1MWIzYSIsImRldmljZUlkIjoiamRqIiwiaWF0IjoxNzUzOTI4MTU3LCJleHAiOjE3NTQ1MzI5NTd9.sdg--saptTwegCeJ0swxrw69EeCOKLJmcPNK0IOh2FY";
+  const { user, setUser, loading, setLoading, accessToken } = useUserStore();
 
   useEffect(() => {
     (async () => {
