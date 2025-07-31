@@ -1,5 +1,6 @@
 import SettingItem from "@/components/SettingItem";
 import Wrapper from "@/components/ui/Wrapper";
+import { useUserStore } from "@/store/user";
 import React, { useState } from "react";
 import {
   Alert,
@@ -7,6 +8,7 @@ import {
   StyleSheet,
   Switch,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -27,6 +29,8 @@ const SettingsScreen = () => {
   const [dailyReminders, setDailyReminders] = useState(true);
   const [streakReminders, setStreakReminders] = useState(false);
 
+  const { clearUser } = useUserStore();
+
   const handleNotificationSettings = () =>
     Alert.alert(
       "Notification Settings",
@@ -37,6 +41,10 @@ const SettingsScreen = () => {
 
   const handleAbout = () =>
     Alert.alert("About", "App version 1.0.0\nBuilt with React Native");
+
+  const handleLogout = () => {
+    clearUser();
+  };
 
   return (
     <Wrapper>
@@ -105,12 +113,12 @@ const SettingsScreen = () => {
           />
         </SettingSection>
 
-        <View style={styles.footer}>
+        <TouchableOpacity style={styles.footer} onPress={handleLogout}>
           <Text style={styles.footerText}>Wanderer v1.0.0</Text>
           <Text style={styles.footerSubtext}>
             Made with ♥ for daily mindfulness
           </Text>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </Wrapper>
   );
