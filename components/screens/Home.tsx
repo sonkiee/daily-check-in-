@@ -4,6 +4,7 @@ import Button from "@/components/ui/Button";
 import Wrapper from "@/components/ui/Wrapper";
 import doCheckin from "@/services/check-in";
 import { useUserStore } from "@/store/user";
+import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -43,6 +44,10 @@ const HomeScreen = () => {
   // };
 
   const onCheckInPress = async () => {
+    if (user?.username === "") {
+      return router.navigate("/(auth)/sign-up");
+    }
+
     setLoading(true);
 
     try {
