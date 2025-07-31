@@ -4,14 +4,14 @@ import { useUserStore } from "@/store/user";
 import { useEffect } from "react";
 
 export const useAuth = () => {
-  const { user, setUser, loading, setLoading } = useUserStore();
+  const { user, setUser, loading, setLoading, accessToken } = useUserStore();
 
   useEffect(() => {
     (async () => {
-      // if (!user?.token) {
-      //   setLoading(false);
-      //   return;
-      // }
+      if (!accessToken) {
+        setLoading(false);
+        return;
+      }
       try {
         const response = await apiClient.get(`/user/me/`);
         const userData = response.data.user;
