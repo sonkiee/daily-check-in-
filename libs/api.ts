@@ -1,3 +1,4 @@
+import { useUserStore } from "@/store/user";
 import axios from "axios";
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
@@ -11,9 +12,8 @@ export const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   async (config) => {
-    // const token = useUserStore.getState().accessToken;
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcyZTZjYzA4LWNlM2QtNDdkZi1iYTY3LTVjM2M3MTQ1MWIzYSIsImRldmljZUlkIjoiamRqIiwiaWF0IjoxNzUzOTI4MTU3LCJleHAiOjE3NTQ1MzI5NTd9.sdg--saptTwegCeJ0swxrw69EeCOKLJmcPNK0IOh2FY";
+    const token = useUserStore.getState().accessToken;
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
 
