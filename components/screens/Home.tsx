@@ -9,7 +9,7 @@ import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 const HomeScreen = () => {
-  const { user } = useUserStore();
+  const { user, setUser } = useUserStore();
 
   const [points, setPoints] = useState(user?.points ?? 0);
 
@@ -52,6 +52,13 @@ const HomeScreen = () => {
 
     try {
       const response = await doCheckin();
+      const updatedUser = {
+        ...user,
+        points: user.points,
+        // streak: ,
+      };
+
+      setUser(updatedUser);
       console.log(response);
     } catch (error) {
       console.error(error);
