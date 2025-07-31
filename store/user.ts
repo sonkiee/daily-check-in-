@@ -44,12 +44,14 @@ export const useUserStore = create<UserStore>()(
       setAccessToken: (token) => set({ accessToken: token }),
       setPushToken: (token) => set({ pushToken: token }),
 
-      clearUser: () =>
+      clearUser: async () => {
         set({
           user: null,
           accessToken: null,
           pushToken: null,
-        }),
+        });
+        await AsyncStorage.removeItem("user-storage");
+      },
 
       setLoading: (state) => set({ loading: state }),
       setRefreshing: (state) => set({ refreshing: state }),
