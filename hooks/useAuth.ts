@@ -31,7 +31,7 @@ export const useAuth = () => {
         setLoading(false);
       }
     })();
-  }, [setLoading, setUser]);
+  }, [setLoading, setUser, accessToken]);
 
   return { user, loading };
 };
