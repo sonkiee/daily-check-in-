@@ -6,7 +6,7 @@ import doCheckin from "@/services/check-in";
 import { useUserStore } from "@/store/user";
 import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 const HomeScreen = () => {
   const { user, setUser } = useUserStore();
@@ -74,7 +74,15 @@ const HomeScreen = () => {
 
   return (
     <Wrapper>
-      <View style={styles.container}>
+      <ScrollView
+        scrollEnabled
+        style={styles.container}
+        contentContainerStyle={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        contentInsetAdjustmentBehavior="automatic"
+      >
         {/* Quote */}
         <View style={styles.quoteContainer}>
           <Text style={styles.quote}>
@@ -118,7 +126,7 @@ const HomeScreen = () => {
             disabled={!canClaim || loading}
           />
         </View>
-      </View>
+      </ScrollView>
 
       <SuccessModal visible={showModal} onClose={handleCloseModal} />
     </Wrapper>
@@ -131,8 +139,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    justifyContent: "center",
-    alignItems: "center",
   },
   topRight: {
     position: "absolute",
