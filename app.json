@@ -48,6 +48,13 @@
           ]
         }
       ],
+      [
+        "expo-build-properties", {
+          "ios": {
+            "userFrameworks": "static"
+          }
+        }
+      ],
       "react-native-google-mobile-ads",
       "expo-secure-store"
     ],
