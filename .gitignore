@@ -9,6 +9,10 @@ dist/
 web-build/
 expo-env.d.ts
 
++ /android
++ /ios
+
+
 # Native
 .kotlin/
 *.orig.*
@@ -17,6 +21,10 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+
+/android
+/ios
+
 
 # Metro
 .metro-health-check*
