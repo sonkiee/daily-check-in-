@@ -1,4 +1,4 @@
-package com.dailycheckin
+package com.sonkey.dailycheckin
 
 import android.app.Application
 import android.content.res.Configuration

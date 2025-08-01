@@ -42,15 +42,8 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/images/notification-icon.png",
           "color": "#ffffff",
-          "iosDisplayInForeground": true,
-          "sounds": [
-            {
-              "name": "default",
-              "source": "./assets/sounds/notification.mp3"
-            }
-          ]
+          "iosDisplayInForeground": true
         }
       ],
       [
