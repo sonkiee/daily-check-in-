@@ -9,14 +9,19 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sonkey.dailycheckin",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.sonkey.dailycheckin"
     },
     "web": {
       "bundler": "metro",
@@ -49,15 +54,11 @@
         }
       ],
       [
-        "expo-build-properties", {
-          "ios": {
-            "userFrameworks": "static"
-          }
+        "react-native-google-mobile-ads",
+        {
+          "iosAppId": "ca-app-pub-2231106094660297~8064637284"
         }
       ],
-      ["react-native-google-mobile-ads",{
-        "iosAppId": "ca-app-pub-2231106094660297~8064637284"
-      }],
       "expo-secure-store"
     ],
     "experiments": {
