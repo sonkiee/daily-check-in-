@@ -22,8 +22,6 @@ const HomeScreen = () => {
   const [lastClaimTime, setLastClaimTime] = useState<Date | null>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const [refreshing, setRefreshing] = useState(false);
-
   const targetPoints = 1000;
   const progress = Math.min(points / targetPoints, 1);
 
@@ -44,6 +42,7 @@ const HomeScreen = () => {
       };
 
       setUser(updatedUser);
+      //   // setShowModal(true);
       console.log(response);
     } catch (error) {
       console.error(error);
