@@ -55,7 +55,9 @@
           }
         }
       ],
-      "react-native-google-mobile-ads",
+      ["react-native-google-mobile-ads",{
+        "iosAppId": "ca-app-pub-2231106094660297~8064637284"
+      }],
       "expo-secure-store"
     ],
     "experiments": {
