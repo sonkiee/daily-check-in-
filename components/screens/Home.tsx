@@ -24,35 +24,8 @@ const HomeScreen = () => {
 
   const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-
-    // Simulate fetching data
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
-  }, []);
-
   const targetPoints = 1000;
   const progress = Math.min(points / targetPoints, 1);
-
-  // const onCheckInPress = async () => {
-  //   if (user.username === "") {
-  //     return router.navigate("/(auth)/sign-up");
-  //   }
-
-  //   const earned = 25 + streak * 5;
-  //   setPoints((prev) => prev + earned);
-  //   setTotalPoints((prev) => prev + earned);
-  //   setStreak((prev) => prev + 1);
-  //   // setCanClaim(false);
-  //   setLastClaimTime(new Date());
-  //   // setShowModal(true);
-
-  //   // setTimeout(() => {
-  //   //   setCanClaim(true);
-  //   // }, 5000); // Simulated cooldown
-  // };
 
   const onCheckInPress = async () => {
     if (!user?.username) {
@@ -120,9 +93,7 @@ const HomeScreen = () => {
         <View style={styles.buttonContainer}>
           <Button
             title={
-              canClaim
-                ? `Check In (+${25 + streak * 5} pts)`
-                : "Claimed Today ✓"
+              canClaim ? `Check In (+${5 + streak * 5} pts)` : "Claimed Today ✓"
             }
             onPress={onCheckInPress}
             loading={loading}
