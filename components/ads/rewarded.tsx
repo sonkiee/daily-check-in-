@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button } from "react-native";
 import {
   RewardedAd,
   RewardedAdEventType,
@@ -41,6 +42,15 @@ const RewardedAds = () => {
   if (!loaded) {
     return null;
   }
+
+  return (
+    <Button
+      title="Show Rewarded Ad"
+      onPress={() => {
+        rewarded.show();
+      }}
+    />
+  );
 };
 
 export default RewardedAds;
