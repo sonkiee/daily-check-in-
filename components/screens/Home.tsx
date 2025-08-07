@@ -7,7 +7,6 @@ import { useUserStore } from "@/store/user";
 import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import BannerAds from "../ads/banner";
 
 const HomeScreen = () => {
   const { user, setUser } = useUserStore();
@@ -103,7 +102,6 @@ const HomeScreen = () => {
       </View>
 
       <SuccessModal visible={showModal} onClose={handleCloseModal} />
-      <BannerAds />
     </Wrapper>
   );
 };

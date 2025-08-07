@@ -1,3 +1,4 @@
+import BannerAds from "@/components/ads/banner";
 import Wrapper from "@/components/ui/Wrapper";
 import signUp from "@/services/sign-up";
 import { useUserStore } from "@/store/user";
@@ -181,6 +182,7 @@ const SignUpScreen = () => {
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
+      <BannerAds />
     </Wrapper>
   );
 };
