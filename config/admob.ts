@@ -5,4 +5,12 @@ export const admobConfig = {
     ios: "",
     android: "",
   }),
+  interstitial: Platform.select({
+    ios: "",
+    android: "",
+  }),
+  rewarded: Platform.select({
+    ios: "",
+    android: "",
+  }),
 };
