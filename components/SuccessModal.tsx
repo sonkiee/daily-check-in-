@@ -1,9 +1,9 @@
 // components/SuccessModal.tsx
 import { images } from "@/constants";
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
 import Modal from "./Modal";
-import Button from "./ui/Button";
+// import Button from "./ui/Button";
 
 type Props = {
   visible: boolean;
@@ -29,7 +29,7 @@ const SuccessModal = ({ visible, onClose }: Props) => {
         <Button
           title="Watch Ads to Double Points"
           onPress={onClose}
-          style={{ marginTop: 20, width: "100%" }}
+          // style={{ marginTop: 20, width: "100%" }}
         />
       </View>
     </Modal>
