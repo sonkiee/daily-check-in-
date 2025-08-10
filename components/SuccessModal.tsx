@@ -8,9 +8,10 @@ import Modal from "./Modal";
 type Props = {
   visible: boolean;
   onClose: () => void;
+  onRewardEarned?: (reward: { type: string; amount: number }) => void;
 };
 
-const SuccessModal = ({ visible, onClose }: Props) => {
+const SuccessModal = ({ visible, onClose, onRewardEarned }: Props) => {
   return (
     <Modal isVisible={visible} onClose={onClose}>
       <View style={styles.modalContent}>
