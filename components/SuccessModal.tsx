@@ -1,7 +1,9 @@
 // components/SuccessModal.tsx
+import { AdMobConfig } from "@/config/admob";
 import { images } from "@/constants";
 import React from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
+import { useRewardedAd } from "react-native-google-mobile-ads";
 import Modal from "./Modal";
 // import Button from "./ui/Button";
 
@@ -12,6 +14,7 @@ type Props = {
 };
 
 const SuccessModal = ({ visible, onClose, onRewardEarned }: Props) => {
+  const { show } = useRewardedAd(AdMobConfig.rewarded);
   return (
     <Modal isVisible={visible} onClose={onClose}>
       <View style={styles.modalContent}>
@@ -29,7 +32,7 @@ const SuccessModal = ({ visible, onClose, onRewardEarned }: Props) => {
         />
         <Button
           title="Watch Ads to Double Points"
-          onPress={onClose}
+          onPress={() => show}
           // style={{ marginTop: 20, width: "100%" }}
         />
       </View>
