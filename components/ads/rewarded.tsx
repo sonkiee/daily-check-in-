@@ -1,5 +1,5 @@
 import { AdMobConfig } from "@/config/admob";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "react-native";
 import {
   RewardedAd,
@@ -9,9 +9,15 @@ import {
 
 const adUnitId = __DEV__ ? TestIds.REWARDED : AdMobConfig.rewarded;
 
-const rewarded = RewardedAd.createForAdRequest(adUnitId, {});
+const createRewarded = () => RewardedAd.createForAdRequest(adUnitId, {});
 const RewardedAds = () => {
   const [loaded, setLoaded] = useState(false);
+  const [rewarded, setRewarded] = useState(createRewarded);
+
+  const loadAd = useCallback(() => {
+    setLoaded(false);
+    rewarded.load();
+  }, [rewarded]);
 
   useEffect(() => {
     const unsubscribeLoaded = rewarded.addAdEventListener(
@@ -24,6 +30,11 @@ const RewardedAds = () => {
       RewardedAdEventType.EARNED_REWARD,
       (reward) => {
         console.log("User earned reward of ", reward);
+
+        const newAd = createRewarded();
+        setRewarded(newAd);
+        setLoaded(false);
+        newAd.load();
       }
     );
 
@@ -35,7 +46,7 @@ const RewardedAds = () => {
       unsubscribeLoaded();
       unsubscribeEarned();
     };
-  }, []);
+  }, [rewarded]);
 
   // No advert ready to show yet
   if (!loaded) {
