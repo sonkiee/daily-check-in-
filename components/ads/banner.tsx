@@ -1,3 +1,4 @@
+import { AdMobConfig } from "@/config/admob";
 import React, { useRef } from "react";
 import { Platform } from "react-native";
 import {
@@ -7,9 +8,7 @@ import {
   useForeground,
 } from "react-native-google-mobile-ads";
 
-const adUnitId = __DEV__
-  ? TestIds.ADAPTIVE_BANNER
-  : "ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy";
+const adUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER : AdMobConfig.banner;
 
 const BannerAds = () => {
   const bannerRef = useRef<BannerAd>(null);

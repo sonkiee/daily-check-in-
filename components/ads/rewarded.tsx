@@ -1,3 +1,4 @@
+import { AdMobConfig } from "@/config/admob";
 import { useEffect, useState } from "react";
 import { Button } from "react-native";
 import {
@@ -6,9 +7,7 @@ import {
   TestIds,
 } from "react-native-google-mobile-ads";
 
-const adUnitId = __DEV__
-  ? TestIds.REWARDED
-  : "ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy";
+const adUnitId = __DEV__ ? TestIds.REWARDED : AdMobConfig.rewarded;
 
 const rewarded = RewardedAd.createForAdRequest(adUnitId, {});
 const RewardedAds = () => {
