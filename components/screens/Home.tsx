@@ -95,7 +95,8 @@ const HomeScreen = () => {
             title={
               canClaim ? `Check In (+${5 + streak * 5} pts)` : "Claimed Today ✓"
             }
-            onPress={onCheckInPress}
+            // onPress={onCheckInPress}
+            onPress={() => setShowModal(true)}
             loading={loading}
             disabled={!canClaim || loading}
           />
