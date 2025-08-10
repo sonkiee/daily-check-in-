@@ -7,7 +7,6 @@ import { useUserStore } from "@/store/user";
 import { router } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import RewardedAds from "../ads/rewarded";
 
 const HomeScreen = () => {
   const { user, setUser } = useUserStore();
@@ -43,7 +42,7 @@ const HomeScreen = () => {
       };
 
       setUser(updatedUser);
-      //   // setShowModal(true);
+      setShowModal(true);
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -95,8 +94,7 @@ const HomeScreen = () => {
             title={
               canClaim ? `Check In (+${5 + streak * 5} pts)` : "Claimed Today ✓"
             }
-            // onPress={onCheckInPress}
-            onPress={() => setShowModal(true)}
+            onPress={onCheckInPress}
             loading={loading}
             disabled={!canClaim || loading}
           />
@@ -104,7 +102,7 @@ const HomeScreen = () => {
       </View>
 
       <SuccessModal visible={showModal} onClose={handleCloseModal} />
-      <RewardedAds />
+      {/* <RewardedAds /> */}
     </Wrapper>
   );
 };
