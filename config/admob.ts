@@ -10,7 +10,7 @@ export const admobConfig = {
     android: "",
   }),
   rewarded: Platform.select({
-    ios: "",
+    ios: "ca-app-pub-2231106094660297/1237947434",
     android: "",
   }),
 };
