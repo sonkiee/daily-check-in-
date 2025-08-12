@@ -9,7 +9,7 @@
       "distribution": "internal",
       "channel": "development",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://checkin-backend-qohy.onrender.com/api/v1"
+        "EXPO_PUBLIC_API_URL": "https://lucky-busy-aphid.ngrok-free.app/api/v1"
       },
       "ios": {
         "simulator": true
