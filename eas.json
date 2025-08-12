@@ -23,12 +23,17 @@
     "preview": {
       "distribution": "internal",
       "channel": "preview",
-      "env": {}
+      "env":  {
+        "EXPO_PUBLIC_API_URL": "https://checkin-backend-qohy.onrender.com/api/v1"
+        
+      }
     },
     "production": {
       "autoIncrement": true,
       "channel": "production",
-      "env": {}
+      "env":  {
+        "EXPO_PUBLIC_API_URL": "https://checkin-backend-qohy.onrender.com/api/v1"
+      }
     }
   },
   "submit": {
