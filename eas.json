@@ -8,7 +8,9 @@
       "developmentClient": true,
       "distribution": "internal",
       "channel": "development",
-      "env": {},
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://checkin-backend-qohy.onrender.com/api/v1"
+      },
       "ios": {
         "simulator": true
       }
