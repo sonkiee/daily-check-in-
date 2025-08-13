@@ -113,7 +113,8 @@ const SignUpScreen = () => {
       }
     } catch (error: any) {
       console.error("Sign-up error", error);
-      Alert.alert("Sign-up failed", error?.message || "Something went wrong.");
+      setErrorMessage(error?.error);
+      Alert.alert("Sign-up failed", error?.error || "Something went wrong.");
     } finally {
       setIsLoading(false);
     }
