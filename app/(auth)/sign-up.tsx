@@ -64,30 +64,30 @@ const SignUpScreen = () => {
       return Alert.alert("Error", "Device ID not available");
     }
 
-    if (!pushToken) {
-      Alert.alert(
-        "Allow Notifications?",
-        "We’d like to send you important updates, reminders, and alerts.",
-        [
-          {
-            text: "Don't Allow",
-            style: "cancel",
-            onPress: () => console.log("User denied notification permission"),
-          },
-          {
-            text: "Allow",
-            onPress: async () => {},
-          },
-        ],
-        {
-          cancelable: false, // Alert must be explicitly dismissed
-          onDismiss: () => {
-            console.log("Notification permission alert dismissed");
-          },
-        }
-      );
-      return;
-    }
+    // if (!pushToken) {
+    //   Alert.alert(
+    //     "Allow Notifications?",
+    //     "We’d like to send you important updates, reminders, and alerts.",
+    //     [
+    //       {
+    //         text: "Don't Allow",
+    //         style: "cancel",
+    //         onPress: () => console.log("User denied notification permission"),
+    //       },
+    //       {
+    //         text: "Allow",
+    //         onPress: async () => {},
+    //       },
+    //     ],
+    //     {
+    //       cancelable: false, // Alert must be explicitly dismissed
+    //       onDismiss: () => {
+    //         console.log("Notification permission alert dismissed");
+    //       },
+    //     }
+    //   );
+    //   return;
+    // }
 
     setIsLoading(true);
 

@@ -3,7 +3,7 @@ import { apiClient } from "@/libs/api";
 interface SignUpProps {
   username: string;
   deviceId: string;
-  pushToken: string;
+  pushToken?: string | null;
 }
 
 const signUp = async ({
